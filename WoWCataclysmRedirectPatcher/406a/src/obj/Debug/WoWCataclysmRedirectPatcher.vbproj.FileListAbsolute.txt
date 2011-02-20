@@ -1,0 +1,5 @@
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\bin\Debug\WoWCataclysmRedirectPatcher.exe
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Debug\ResolveAssemblyReference.cache
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Debug\WoWCataclysmRedirectPatcher.Resources.resources
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Debug\WoWCataclysmRedirectPatcher.vbproj.GenerateResource.Cache
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Debug\WoWCataclysmRedirectPatcher.exe

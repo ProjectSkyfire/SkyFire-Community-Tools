@@ -1,0 +1,7 @@
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\bin\Release\WoWCataclysmRedirectPatcher.exe
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\bin\Release\WoWCataclysmRedirectPatcher.pdb
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Release\ResolveAssemblyReference.cache
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Release\WoWCataclysmRedirectPatcher.Resources.resources
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Release\WoWCataclysmRedirectPatcher.vbproj.GenerateResource.Cache
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Release\WoWCataclysmRedirectPatcher.exe
+C:\svn\SkyFire-Community-Tools\WoWCataclysmRedirectPatcher\406a\src\obj\Release\WoWCataclysmRedirectPatcher.pdb
