@@ -1,14 +1,14 @@
 ﻿Imports System.IO
 
 Module clsMain
-    'WoW 4.0.3 13329 (release)
+    'WoW 4.0.6a 13623 (release)
 
     'Exe Patcher'
-    Private unpatchedBytes As Byte() = New Byte() {&HE8, &HC2, &HE5, &HFF, &HFF}
+    Private unpatchedBytes As Byte() = New Byte() {&HE8, &H42, &HE4, &HFF, &HFF}
     Private patchedBytes As Byte() = New Byte() {&HB8, &H0, &H0, &H0, &H0}
-    Private patchOffset As Integer = &H8FAA9
+    Private patchOffset As Integer = &H91229
     Private wowExe As Byte() = Nothing
-    Private wowExeLength As Integer = 9175192
+    Private wowExeLength As Integer = 9217176
     ''
 
     'Memory Patcher'
@@ -118,7 +118,7 @@ Module clsMain
         If wowExe IsNot Nothing Then
             If wowExe.Length <> wowExeLength Then
                 Console.Write("WoW.exe Size mismatch.")
-                Console.Write("Wrong Wow version, this patch will only work for WoW 4.0.3 13329.")
+                Console.Write("Wrong Wow version, this patch will only work for WoW 4.0.6a 13623.")
 
                 Console.WriteLine(vbCrLf & "Press any key to Exit.")
                 Console.ReadKey(True)
@@ -136,7 +136,7 @@ Module clsMain
                     PatchExe()
                 Else
                     Console.WriteLine("Correct ByteArray not found.")
-                    Console.Write("Wrong Wow version, this patch will only work for WoW 4.0.3 13329.")
+                    Console.Write("Wrong Wow version, this patch will only work for WoW 4.0.6a 13623.")
 
                     Console.WriteLine(vbCrLf & "Press any key to Exit.")
                     Console.ReadKey(True)
