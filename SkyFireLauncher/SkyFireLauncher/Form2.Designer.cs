@@ -82,7 +82,7 @@
             // 
             // Wait
             // 
-            this.Wait.Interval = 1200;
+            this.Wait.Interval = 5000;
             this.Wait.Tick += new System.EventHandler(this.Wait_Tick);
             // 
             // Form2
@@ -99,7 +99,7 @@
             this.MaximumSize = new System.Drawing.Size(495, 200);
             this.MinimumSize = new System.Drawing.Size(495, 200);
             this.Name = "Form2";
-            this.Text = "SkyFirePatcher";
+            this.Text = "SkyFireLauncher";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
 
