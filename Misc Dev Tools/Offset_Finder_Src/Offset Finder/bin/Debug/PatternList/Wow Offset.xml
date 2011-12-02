@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<PatternList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <processName>Wow</processName>
+  <baseModuleName>Wow.exe</baseModuleName>
+  <Patterns>
+    <Pattern>
+      <offsetName>clientConnection</offsetName>
+      <pattern>00 00 00 00 89 82 00 46 00 00 89 81 08 00 00 00</pattern>
+      <mask>????xx?xxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+      <!-- int or int64 or string or float -->
+    </Pattern>
+    <Pattern>
+      <offsetName>targetGuid</offsetName>
+      <pattern>8B 45 08 8B 35 FF FF FF FF 8B 3D FF FF FF FF 6A</pattern>
+      <mask>xxxxx????xx????x</mask>
+      <offsetLocation>5</offsetLocation>
+      <type>int64</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>lastTargetGuid</offsetName>
+      <pattern>8B 45 08 8B 35 FF FF FF FF 8B 3D FF FF FF FF 6A</pattern>
+      <mask>xxxxx????xx????x</mask>
+      <offsetLocation>11</offsetLocation>
+      <type>int64</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>cmd</offsetName>
+      <pattern>55 8b ec 53 56 8b 75 08 57 BF ff ff ff ff</pattern>
+      <mask>xxxxxxxxxx????</mask>
+      <offsetLocation>10</offsetLocation>
+      <type>string</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>DX_DEVICE</offsetName>
+      <pattern>00 00 00 00 8B 01 8B 80 A0 00 00 00 52 8B 55 08</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>gameState</offsetName>
+      <pattern>00 00 00 00 0F 84 64 01 00 00 8B 86 FC 00 00 00</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>isLoadingOrConnecting</offsetName>
+      <pattern>00 00 00 00 0B 00 00 00 8B 45 08 F7 D8 1B C0 83</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>continentId</offsetName>
+      <pattern>00 00 00 00 81 EC 1C 01 00 00 53 56 68 00 00 00</pattern>
+      <mask>????xxxxxxxxx???</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>lastWowErrorMessage</offsetName>
+      <pattern>B8 00 00 00 00 8D 95 68 F3 FF FF 83 C4 10 BE B7</pattern>
+      <mask>x????xxxxxxxxxxx</mask>
+      <offsetLocation>1</offsetLocation>
+      <type>string</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>petGUID</offsetName>
+      <pattern>00 00 00 00 8B 45 08 83 EC 08 53 8B 5D 0C 56 3B</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int64</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>playerName</offsetName>
+      <pattern>00 00 00 00 F7 D8 1B C0 25 00 00 00 01 C3 CC CC</pattern>
+      <mask>????xxxxx???xxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>string</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>PlayerComboPoint</offsetName>
+      <pattern>00 00 00 00 5D C3 55 8B EC 8B 45 08 85 C0 7C 0F</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>FACTION_START_INDEX</offsetName>
+      <pattern>00 00 00 00 3B C1 7C 5E 3B 05 00 00 00 01 7F 56</pattern>
+      <mask>????xxxxxx???xxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>FACTION_POINTER</offsetName>
+      <pattern>00 00 00 00 8B 04 81 3B C3 74 47 8B 1D 00 00 00</pattern>
+      <mask>????xxxxxxxxx???</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>FACTION_TOTAL</offsetName>
+      <pattern>00 00 00 00 7F 56 2B C1 8B 0D 00 00 00 01 8B 04</pattern>
+      <mask>????xxxxxx???xxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>startBar</offsetName>
+      <pattern>00 00 00 00 85 C0 74 0E A9 00 00 00 F0 75 07 B8</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>nbBar</offsetName>
+      <pattern>00 00 00 00 00 00 00 00 C7 05 00 00 00 01 00 00</pattern>
+      <mask>????xxxxxx???xxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>baseBoxChat</offsetName>
+      <pattern>00 00 00 00 75 1F 8B B6 44 02 00 00 8B 46 20 8B</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>statBoxChat</offsetName>
+      <pattern>00 00 00 00 41 89 0D A8 00 00 01 83 F9 01 75 29</pattern>
+      <mask>????xxxx??xxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>knownSpell</offsetName>
+      <pattern>00 00 00 00 8B 04 82 8B 08 83 F9 01 74 E3 83 F9</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>nbSpell</offsetName>
+      <pattern>00 00 00 00 0F 86 4E 01 00 00 56 53 57 E8 31 00</pattern>
+      <mask>????xxxxxxxxxxx?</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>chatBufferStart</offsetName>
+      <pattern>00 00 00 00 5D C3 CC CC CC CC CC CC CC CC CC CC</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>string</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>chatBufferPos</offsetName>
+      <pattern>00 00 00 00 8B 45 08 03 C1 99 B9 3C 00 00 00 F7</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>CorpsePlayerX</offsetName>
+      <pattern>00 00 00 00 0F 28 E2 F3 0F 59 65 B4 F3 0F 58 DC</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>nameStorePtr (offset + 0x8)</offsetName>
+      <pattern>00 00 00 00 89 5D F8 89 5D FC E8 00 00 05 00 3B</pattern>
+      <mask>????xxxxxxx??xxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>playerSelected</offsetName>
+      <pattern>00 00 00 00 A3 00 00 00 01 B8 01 00 00 00 5D C3</pattern>
+      <mask>????x???xxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>textTextBoxSelectedPtr</offsetName>
+      <pattern>00 00 00 00 75 1F 8B B6 44 02 00 00 8B 46 20 8B</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>loginSelectedTextBoxId</offsetName>
+      <pattern>00 00 00 00 41 89 0D 00 00 00 01 83 F9 01 75 29</pattern>
+      <mask>????xxx???xxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>numberOfPlayer</offsetName>
+      <pattern>00 00 00 00 7D 0E 69 C0 98 02 00 00 03 05 00 00</pattern>
+      <mask>????xxxxxxxxxx??</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>isLoginPage</offsetName>
+      <pattern>00 00 00 00 8B 01 8B 50 04 56 FF D2 8B 0D 00 00</pattern>
+      <mask>????xxxxxxxxxx??</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>AutoLoot_Activate_Pointer</offsetName>
+      <pattern>00 00 00 00 8B 41 30 50 8B CE E8 39 00 D4 FF E9</pattern>
+      <mask>????xxxxxxxx?xxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+
+    <Pattern>
+      <offsetName>AutoSelfCast_Activate_Pointer</offsetName>
+      <pattern>00 00 00 00 E8 00 00 00 FF 6A 00 6A 00 6A 00 6A</pattern>
+      <mask>????x???xxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>AutoInteract_Activate_Pointer</offsetName>
+      <pattern>00 00 00 00 83 C4 10 8B C6 39 7A 30 74 0E 83 8E</pattern>
+      <mask>????xxxxxxxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>statPvp</offsetName>
+      <pattern>00 00 00 00 89 1D 54 00 00 01 38 1D 98 00 00 01</pattern>
+      <mask>????xxx??xxxx??x</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>pvpExitWindow</offsetName>
+      <pattern>00 00 00 00 00 75 49 83 3D C0 00 00 01 04 74 40</pattern>
+      <mask>????xxxxxx??xxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+    <Pattern>
+      <offsetName>selectedBattleGroundID</offsetName>
+      <pattern>00 00 00 00 8B 0D 7C 00 00 01 3B C1 7C 55 3B 05</pattern>
+      <mask>????xxx??xxxxxxx</mask>
+      <offsetLocation>0</offsetLocation>
+      <type>int</type>
+    </Pattern>
+  </Patterns>
+
+</PatternList>

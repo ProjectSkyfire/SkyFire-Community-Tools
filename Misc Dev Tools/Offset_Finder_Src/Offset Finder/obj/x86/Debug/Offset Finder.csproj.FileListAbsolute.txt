@@ -1,0 +1,33 @@
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\bin\Debug\Offset Finding.exe.config
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\bin\Debug\Offset Finding.exe
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\bin\Debug\Offset Finding.pdb
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\Offset_Finding.Create_Pattern.resources
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\Offset_Finding.MainForm.resources
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\Offset_Finding.Properties.Resources.resources
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\Offset Finding.exe
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finding\obj\x86\Debug\Offset Finding.pdb
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\bin\Debug\Offset Finder.exe.config
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\bin\Debug\Offset Finder.exe
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\bin\Debug\Offset Finder.pdb
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\Offset_Finder.Create_Pattern.resources
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\Offset_Finder.MainForm.resources
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\Offset_Finder.Properties.Resources.resources
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\Offset Finder.exe
+C:\Users\rival\Desktop\Offset_Finding_Src\Offset Finder\obj\x86\Debug\Offset Finder.pdb
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\bin\Debug\Offset Finder.exe.config
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\Offset Finder.exe
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\Offset Finder.pdb
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\bin\Debug\Offset Finder.exe
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\bin\Debug\Offset Finder.pdb
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\Offset_Finder.Create_Pattern.resources
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\Offset_Finder.MainForm.resources
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\Offset_Finder.Properties.Resources.resources
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\rival\Desktop\Offset_Finder_Src\Offset Finder\obj\x86\Debug\ResGen.write.1.tlog
