@@ -27,7 +27,7 @@ SET /p pass= MySQL Password:
 ECHO.
 SET /p worlddb=   Enter name of your World DB:
 SET port=3306
-SET dumppath=.\world_backup\
+SET dumppath=.\backup\
 SET mysqlpath=.\dep\mysql\
 SET skyfire_db_sql=.\world_db\skyfire
 SET ccdb_sql=.\world_db\
