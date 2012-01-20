@@ -169,4 +169,24 @@ CREATE TABLE `lag_reports` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
 ALTER TABLE `petition`
   ADD COLUMN `type`  tinyint(3) UNSIGNED NOT NULL DEFAULT '0' AFTER `name`;
-  
+DROP TABLE IF EXISTS `guild_achievement`;
+CREATE TABLE `guild_achievement` (
+  `guildid` INT(20) UNSIGNED NOT NULL,
+  `achievement` SMALLINT(10) UNSIGNED NOT NULL,
+  `date` INT(20) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`guildid`,`achievement`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `guild_achievement_progress`;
+CREATE TABLE `guild_achievement_progress` (
+	`guildid` INT(10) UNSIGNED NOT NULL,
+	`criteria` SMALLINT(5) UNSIGNED NOT NULL,
+	`counter` INT(10) UNSIGNED NOT NULL,
+	`date` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	PRIMARY KEY (`guildid`, `criteria`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE guild_member
+  ADD COLUMN `BankResetTimeTab6` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankRemSlotsTab5`,
+  ADD COLUMN `BankRemSlotsTab6` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankResetTimeTab6`,
+  ADD COLUMN `BankResetTimeTab7` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankRemSlotsTab6`,
+  ADD COLUMN `BankRemSlotsTab7` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankResetTimeTab7`;
+   
