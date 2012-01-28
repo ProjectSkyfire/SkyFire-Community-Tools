@@ -17,11 +17,11 @@ CREATE TABLE `spelldifficulty_dbc` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Spelldificulty based on dbc';
 
-ALTER TABLE
-`creature` DROP COLUMN `DeathState`,
-`npc_trainer` DROP COLUMN `KillCredit`,
-`game_event` CHANGE `entry` `EventEntry` mediumint(8) DEFAULT NULL;
+ALTER TABLE `creature` DROP COLUMN `DeathState`;
+ALTER TABLE `npc_trainer` DROP COLUMN `KillCredit`;
+ALTER TABLE `game_event` CHANGE `entry` `EventEntry` mediumint(8) DEFAULT NULL;
 
+DROP TABLE IF EXISTS `achievement_dbc`;
 CREATE TABLE `achievement_dbc` (
   `ID` int(10) unsigned NOT NULL,
   `requiredFaction` int(11) NOT NULL DEFAULT '-1',
@@ -209,6 +209,7 @@ CREATE TABLE `spell_proc` (
   PRIMARY KEY (`spellId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `spell_threat`;
 CREATE TABLE `spell_threat` (
   `entry` mediumint(8) unsigned NOT NULL,
   `flatMod` int(6) DEFAULT NULL,
@@ -217,7 +218,6 @@ CREATE TABLE `spell_threat` (
   PRIMARY KEY (`entry`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
 
-DROP TABLE IF EXISTS `spell_threat`;
 INSERT INTO `spell_threat` VALUES 
 ('5676', '0', '2', '0'),
 ('28176', '0', '0', '0'),
@@ -326,6 +326,7 @@ CHANGE `event` `eventEntry` int(10) NOT NULL DEFAULT '0';
 ALTER TABLE `game_event_pool`
 CHANGE `event` `eventEntry` smallint(6) NOT NULL DEFAULT '0';
 
+DROP TABLE IF EXISTS `item_template_addon`;
 CREATE TABLE `item_template_addon` (
   `Id` int(10) unsigned NOT NULL,
   `BuyCount` tinyint(3) unsigned NOT NULL DEFAULT '1',
@@ -336,7 +337,6 @@ CREATE TABLE `item_template_addon` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
-DROP TABLE IF EXISTS `item_template_addon`;
 INSERT INTO `item_template_addon` VALUES 
 ('117', '5', '1', '0', '0', '0'),
 ('159', '5', '0', '0', '0', '0'),
