@@ -1,18 +1,4 @@
-DROP TABLE IF EXISTS 
-`account_tutorial`,
-`arena_team_stats`,
-`character_cp_weekcap`,
-`character_feed_log`,
-`character_version`,
-`cheaters`,
-`guild_achievement`,
-`guild_achievement_progress`,
-`reserved_name`,
-`gm_subsurveys`,
-`gm_surveys`,
-`gm_tickets`,
-`lag_reports`;
-
+DROP TABLE IF EXISTS `account_tutorial`;
 CREATE TABLE `account_tutorial` (
   `accountId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Account Identifier',
   `tut0` int(10) unsigned NOT NULL DEFAULT '0',
@@ -26,6 +12,7 @@ CREATE TABLE `account_tutorial` (
   PRIMARY KEY (`accountId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
 
+DROP TABLE IF EXISTS `character_feed_log`;
 CREATE TABLE `character_feed_log` (
   `guid` int(11) NOT NULL,
   `type` smallint(1) NOT NULL,
@@ -37,11 +24,13 @@ CREATE TABLE `character_feed_log` (
   `item_quality` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `character_version`;
 CREATE TABLE `character_version` (
   `core_version` varchar(120) NOT NULL DEFAULT 'SkyFireEMU Rebase 4.0.6a' COMMENT 'Core revision dumped at startup.',
   `required_2011_12_02_02_characters_version_test` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='Version Notes';
 
+DROP TABLE IF EXISTS `cheaters`;
 CREATE TABLE `cheaters` (
   `entry` bigint(20) NOT NULL AUTO_INCREMENT,
   `player` varchar(30) NOT NULL,
@@ -62,6 +51,7 @@ CREATE TABLE `cheaters` (
   KEY `idx_Player` (`player`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `reserved_name`;
 CREATE TABLE `reserved_name` (
   `name` varchar(12) NOT NULL DEFAULT '',
   PRIMARY KEY (`name`)
@@ -102,6 +92,7 @@ CHANGE `next_start` `next_start` int(10) UNSIGNED NOT NULL DEFAULT '0';
 ALTER TABLE `game_event_condition_save`
 CHANGE `event_id` `eventEntry` tinyint(3) UNSIGNED NOT NULL DEFAULT '0';
 
+DROP TABLE IF EXISTS `gm_subsurveys`;
 CREATE TABLE `gm_subsurveys` (
   `surveyId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `subsurveyId` int(10) unsigned NOT NULL DEFAULT '0',
@@ -110,6 +101,7 @@ CREATE TABLE `gm_subsurveys` (
   PRIMARY KEY (`surveyId`,`subsurveyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
 
+DROP TABLE IF EXISTS `gm_surveys`;
 CREATE TABLE `gm_surveys` (
   `surveyId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `guid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -119,6 +111,7 @@ CREATE TABLE `gm_surveys` (
   PRIMARY KEY (`surveyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
 
+DROP TABLE IF EXISTS `gm_tickets`;
 CREATE TABLE `gm_tickets` (
   `ticketId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `guid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier of ticket creator',
@@ -139,6 +132,7 @@ CREATE TABLE `gm_tickets` (
   PRIMARY KEY (`ticketId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
 
+DROP TABLE IF EXISTS `lag_reports`;
 CREATE TABLE `lag_reports` (
   `reportId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `guid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -152,7 +146,8 @@ CREATE TABLE `lag_reports` (
 
 ALTER TABLE `petition`
   ADD COLUMN `type`  tinyint(3) UNSIGNED NOT NULL DEFAULT '0' AFTER `name`;
-  
+ 
+DROP TABLE IF EXISTS `guild_achievement`;
 CREATE TABLE `guild_achievement` (
   `guildid` INT(20) UNSIGNED NOT NULL,
   `achievement` SMALLINT(10) UNSIGNED NOT NULL,
@@ -160,6 +155,7 @@ CREATE TABLE `guild_achievement` (
   PRIMARY KEY (`guildid`,`achievement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  
+DROP TABLE IF EXISTS `guild_achievement_progress`;
 CREATE TABLE `guild_achievement_progress` (
 	`guildid` INT(10) UNSIGNED NOT NULL,
 	`criteria` SMALLINT(5) UNSIGNED NOT NULL,
