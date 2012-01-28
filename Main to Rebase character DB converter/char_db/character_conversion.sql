@@ -1,13 +1,18 @@
-DROP TABLE IF EXISTS `account_tutorial`;
-DROP TABLE IF EXISTS `arena_team_stats`;
-DROP TABLE IF EXISTS `character_cp_weekcap`;
-DROP TABLE IF EXISTS `character_feed_log`;
-DROP TABLE IF EXISTS `character_version`;
-DROP TABLE IF EXISTS `cheaters`;
-DROP TABLE IF EXISTS `creature_loot_template`;
-DROP TABLE IF EXISTS `guild_achievement`;
-DROP TABLE IF EXISTS `guild_achievement_progress`;
-DROP TABLE IF EXISTS `reserved_name`;
+DROP TABLE IF EXISTS 
+`account_tutorial`,
+`arena_team_stats`,
+`character_cp_weekcap`,
+`character_feed_log`,
+`character_version`,
+`cheaters`,
+`guild_achievement`,
+`guild_achievement_progress`,
+`reserved_name`,
+`gm_subsurveys`,
+`gm_surveys`,
+`gm_tickets`,
+`lag_reports`;
+
 CREATE TABLE `account_tutorial` (
   `accountId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Account Identifier',
   `tut0` int(10) unsigned NOT NULL DEFAULT '0',
@@ -20,6 +25,7 @@ CREATE TABLE `account_tutorial` (
   `tut7` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`accountId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
 CREATE TABLE `character_feed_log` (
   `guid` int(11) NOT NULL,
   `type` smallint(1) NOT NULL,
@@ -30,10 +36,12 @@ CREATE TABLE `character_feed_log` (
   `item_guid` int(11) NOT NULL,
   `item_quality` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `character_version` (
   `core_version` varchar(120) NOT NULL DEFAULT 'SkyFireEMU Rebase 4.0.6a' COMMENT 'Core revision dumped at startup.',
   `required_2011_12_02_02_characters_version_test` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='Version Notes';
+
 CREATE TABLE `cheaters` (
   `entry` bigint(20) NOT NULL AUTO_INCREMENT,
   `player` varchar(30) NOT NULL,
@@ -53,73 +61,47 @@ CREATE TABLE `cheaters` (
   KEY `idx_Count` (`count`) USING BTREE,
   KEY `idx_Player` (`player`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `creature_loot_template` (
-  `entry` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `item` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `ChanceOrQuestChance` float NOT NULL DEFAULT '100',
-  `lootmode` smallint(5) unsigned NOT NULL DEFAULT '1',
-  `groupid` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `mincountOrRef` mediumint(9) NOT NULL DEFAULT '1',
-  `maxcount` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`entry`,`item`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Loot System';
-CREATE TABLE `guild_achievement` (
-  `guildid` int(20) unsigned NOT NULL,
-  `achievement` smallint(10) unsigned NOT NULL,
-  `date` int(20) unsigned DEFAULT NULL,
-  PRIMARY KEY (`guildid`,`achievement`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `guild_achievement_progress` (
-  `guildid` int(10) unsigned NOT NULL,
-  `criteria` smallint(5) unsigned NOT NULL,
-  `counter` int(10) unsigned NOT NULL,
-  `date` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guildid`,`criteria`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE `reserved_name` (
   `name` varchar(12) NOT NULL DEFAULT '',
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player Reserved Names';
+
 ALTER TABLE `account_data`
 CHANGE `account` `accountId` INT(32) DEFAULT NULL;
+
 ALTER TABLE `characters`
-CHANGE `petSlotUsed` `petSlotUsed` INT(32) DEFAULT NULL;
-ALTER TABLE characters MODIFY map INT(10);
-ALTER TABLE characters MODIFY zone INT(10);
-ALTER TABLE `characters`
+CHANGE `petSlotUsed` `petSlotUsed` INT(32) DEFAULT NULL,
+MODIFY map INT(10),
+MODIFY zone INT(10),
 DROP COLUMN `stable_slots`,
-DROP COLUMN `ammoId`;
-ALTER TABLE `characters`
+DROP COLUMN `ammoId`,
 ADD COLUMN `grantableLevels`  int(10) UNSIGNED NOT NULL DEFAULT '0' AFTER `petSlotUsed`;
+
 ALTER TABLE `character_queststatus`
 ADD COLUMN `playercount`  smallint(5) UNSIGNED NOT NULL DEFAULT '0' AFTER `itemcount4`;
+
 ALTER TABLE `character_homebind`
-CHANGE `map` `mapId` smallint(5) DEFAULT '0';
-ALTER TABLE `character_homebind`
-CHANGE `zone` `zoneId` smallint(5) DEFAULT '0';
-ALTER TABLE `character_homebind`
-CHANGE `position_x` `posX` FLOAT(0) DEFAULT '0';
-ALTER TABLE `character_homebind`
-CHANGE `position_y` `posY` FLOAT(0) DEFAULT '0';
-ALTER TABLE `character_homebind`
+CHANGE `map` `mapId` smallint(5) DEFAULT '0',
+CHANGE `zone` `zoneId` smallint(5) DEFAULT '0',
+CHANGE `position_x` `posX` FLOAT(0) DEFAULT '0',
+CHANGE `position_y` `posY` FLOAT(0) DEFAULT '0',
 CHANGE `position_z` `posZ` FLOAT(0) DEFAULT '0';
+
 ALTER TABLE `guild`
-CHANGE `xp` `xp` bigint(20) UNSIGNED NULL DEFAULT '0';
-ALTER TABLE `guild`
-CHANGE `level` `level` int(10) UNSIGNED NULL DEFAULT '0';
-ALTER TABLE `guild`
-ADD COLUMN `m_today_xp`  bigint(20) UNSIGNED NULL DEFAULT '0' AFTER `level`;
-ALTER TABLE `guild`
+CHANGE `xp` `xp` bigint(20) UNSIGNED NULL DEFAULT '0',
+CHANGE `level` `level` int(10) UNSIGNED NULL DEFAULT '0',
+ADD COLUMN `m_today_xp`  bigint(20) UNSIGNED NULL DEFAULT '0' AFTER `level`,
 ADD COLUMN `m_xp_cap`  bigint(20) UNSIGNED NULL DEFAULT '0' AFTER `m_today_xp`;
+
 ALTER TABLE `game_event_save`
-CHANGE `event_id` `eventEntry` tinyint(3) UNSIGNED NOT NULL DEFAULT '0';
-ALTER TABLE `game_event_save`
-CHANGE `state` `state` tinyint(3) UNSIGNED NOT NULL DEFAULT '0';
-ALTER TABLE `game_event_save`
-CHANGE `next_start` `next_start` int(10) UNSIGNED NOT NULL DEFAULT '0'; 
+CHANGE `event_id` `eventEntry` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+CHANGE `state` `state` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+CHANGE `next_start` `next_start` int(10) UNSIGNED NOT NULL DEFAULT '0';
+
 ALTER TABLE `game_event_condition_save`
-CHANGE `event_id` `eventEntry` tinyint(3) UNSIGNED NOT NULL DEFAULT '0'; 
-DROP TABLE IF EXISTS `gm_subsurveys`;
+CHANGE `event_id` `eventEntry` tinyint(3) UNSIGNED NOT NULL DEFAULT '0';
+
 CREATE TABLE `gm_subsurveys` (
   `surveyId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `subsurveyId` int(10) unsigned NOT NULL DEFAULT '0',
@@ -127,7 +109,7 @@ CREATE TABLE `gm_subsurveys` (
   `comment` text NOT NULL,
   PRIMARY KEY (`surveyId`,`subsurveyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-DROP TABLE IF EXISTS `gm_surveys`;
+
 CREATE TABLE `gm_surveys` (
   `surveyId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `guid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -136,7 +118,7 @@ CREATE TABLE `gm_surveys` (
   `createTime` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`surveyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-DROP TABLE IF EXISTS `gm_tickets`;
+
 CREATE TABLE `gm_tickets` (
   `ticketId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `guid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier of ticket creator',
@@ -156,7 +138,7 @@ CREATE TABLE `gm_tickets` (
   `viewed` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ticketId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-DROP TABLE IF EXISTS `lag_reports`;
+
 CREATE TABLE `lag_reports` (
   `reportId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `guid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -167,16 +149,17 @@ CREATE TABLE `lag_reports` (
   `posZ` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`reportId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
 ALTER TABLE `petition`
   ADD COLUMN `type`  tinyint(3) UNSIGNED NOT NULL DEFAULT '0' AFTER `name`;
-DROP TABLE IF EXISTS `guild_achievement`;
+  
 CREATE TABLE `guild_achievement` (
   `guildid` INT(20) UNSIGNED NOT NULL,
   `achievement` SMALLINT(10) UNSIGNED NOT NULL,
   `date` INT(20) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`guildid`,`achievement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-DROP TABLE IF EXISTS `guild_achievement_progress`;
+ 
 CREATE TABLE `guild_achievement_progress` (
 	`guildid` INT(10) UNSIGNED NOT NULL,
 	`criteria` SMALLINT(5) UNSIGNED NOT NULL,
@@ -184,9 +167,9 @@ CREATE TABLE `guild_achievement_progress` (
 	`date` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 	PRIMARY KEY (`guildid`, `criteria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 ALTER TABLE guild_member
   ADD COLUMN `BankResetTimeTab6` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankRemSlotsTab5`,
   ADD COLUMN `BankRemSlotsTab6` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankResetTimeTab6`,
   ADD COLUMN `BankResetTimeTab7` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankRemSlotsTab6`,
   ADD COLUMN `BankRemSlotsTab7` int(10) unsigned NOT NULL DEFAULT '0' AFTER `BankResetTimeTab7`;
-   
