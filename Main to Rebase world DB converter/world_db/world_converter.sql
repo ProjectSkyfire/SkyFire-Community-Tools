@@ -1,10 +1,12 @@
 DROP TABLE IF EXISTS `emuopcodes`;
+
 DROP TABLE IF EXISTS `game_event_prerequisite`;
 CREATE TABLE `game_event_prerequisite` (
   `eventEntry` mediumint(8) unsigned NOT NULL,
   `prerequisite_event` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`eventEntry`,`prerequisite_event`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `spelldifficulty_dbc`;
 CREATE TABLE `spelldifficulty_dbc` (
   `id` int(11) unsigned NOT NULL DEFAULT '0',
@@ -14,9 +16,12 @@ CREATE TABLE `spelldifficulty_dbc` (
   `spellid3` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Spelldificulty based on dbc';
-ALTER TABLE `creature` DROP COLUMN `DeathState`;
-ALTER TABLE `npc_trainer` DROP COLUMN `KillCredit`;
-ALTER TABLE `game_event` CHANGE `entry` `EventEntry` mediumint(8) DEFAULT NULL;
+
+ALTER TABLE
+`creature` DROP COLUMN `DeathState`,
+`npc_trainer` DROP COLUMN `KillCredit`,
+`game_event` CHANGE `entry` `EventEntry` mediumint(8) DEFAULT NULL;
+
 CREATE TABLE `achievement_dbc` (
   `ID` int(10) unsigned NOT NULL,
   `requiredFaction` int(11) NOT NULL DEFAULT '-1',
@@ -27,8 +32,10 @@ CREATE TABLE `achievement_dbc` (
   `refAchievement` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 ALTER TABLE `game_event_npcflag`
 CHANGE `event_id` `eventEntry` mediumint(8) NOT NULL DEFAULT '0';
+
 DROP TABLE IF EXISTS `spellaurarestrictions_dbc`;
 CREATE TABLE `spellaurarestrictions_dbc` (
   `Id` int(11) NOT NULL DEFAULT '0',
@@ -42,6 +49,7 @@ CREATE TABLE `spellaurarestrictions_dbc` (
   `excludeTargetAuraSpell` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `spellclassoptions_dbc`;
 CREATE TABLE `spellclassoptions_dbc` (
   `Id` int(10) unsigned NOT NULL DEFAULT '0',
@@ -53,6 +61,7 @@ CREATE TABLE `spellclassoptions_dbc` (
   `description` text NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `spelleffect_dbc`;
 CREATE TABLE `spelleffect_dbc` (
   `Id` int(10) unsigned NOT NULL DEFAULT '0',
@@ -83,6 +92,7 @@ CREATE TABLE `spelleffect_dbc` (
   `EffectIndex` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `spell_dbc`;
 CREATE TABLE `spell_dbc` (
   `Id` int(10) unsigned NOT NULL,
@@ -198,7 +208,7 @@ CREATE TABLE `spell_proc` (
   `charges` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`spellId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-DROP TABLE IF EXISTS `spell_threat`;
+
 CREATE TABLE `spell_threat` (
   `entry` mediumint(8) unsigned NOT NULL,
   `flatMod` int(6) DEFAULT NULL,
@@ -206,48 +216,50 @@ CREATE TABLE `spell_threat` (
   `apPctMod` float NOT NULL DEFAULT '0' COMMENT 'additional threat bonus from attack power',
   PRIMARY KEY (`entry`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
-INSERT INTO `spell_threat` VALUES ('5676', '0', '2', '0');
-INSERT INTO `spell_threat` VALUES ('28176', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('8056', '0', '2', '0');
-INSERT INTO `spell_threat` VALUES ('15237', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('23455', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('32546', '0', '0.5', '0');
-INSERT INTO `spell_threat` VALUES ('33619', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('2139', '180', '1', '0');
-INSERT INTO `spell_threat` VALUES ('63611', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('45524', '240', '1', '0');
-INSERT INTO `spell_threat` VALUES ('43265', '0', '1.9', '0');
-INSERT INTO `spell_threat` VALUES ('49576', '110', '1', '0');
-INSERT INTO `spell_threat` VALUES ('48743', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('65142', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('47568', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('51209', '112', '1', '0');
-INSERT INTO `spell_threat` VALUES ('49039', '110', '1', '0');
-INSERT INTO `spell_threat` VALUES ('56815', '0', '1.75', '0');
-INSERT INTO `spell_threat` VALUES ('50422', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('55090', '51', '1', '0');
-INSERT INTO `spell_threat` VALUES ('17057', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('5211', '53', '1', '0');
-INSERT INTO `spell_threat` VALUES ('45334', '40', '1', '0');
-INSERT INTO `spell_threat` VALUES ('34299', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('6807', '13', '1', '0');
-INSERT INTO `spell_threat` VALUES ('60089', '638', '1', '0');
-INSERT INTO `spell_threat` VALUES ('33745', '182', '0.5', '0');
-INSERT INTO `spell_threat` VALUES ('779', '0', '1.5', '0');
-INSERT INTO `spell_threat` VALUES ('5209', '98', '1', '0');
-INSERT INTO `spell_threat` VALUES ('29166', '0', '10', '0');
-INSERT INTO `spell_threat` VALUES ('7294', '0', '2', '0');
-INSERT INTO `spell_threat` VALUES ('498', '0', '0', '0');
-INSERT INTO `spell_threat` VALUES ('845', '8', '1', '0');
-INSERT INTO `spell_threat` VALUES ('78', '5', '1', '0');
-INSERT INTO `spell_threat` VALUES ('57755', '0', '1.5', '0');
-INSERT INTO `spell_threat` VALUES ('6572', '7', '1', '0');
-INSERT INTO `spell_threat` VALUES ('23922', '228', '1', '0');
-INSERT INTO `spell_threat` VALUES ('1464', '18', '1', '0');
-INSERT INTO `spell_threat` VALUES ('7386', '345', '1', '0.05');
-INSERT INTO `spell_threat` VALUES ('20243', '0', '1', '0.05');
-INSERT INTO `spell_threat` VALUES ('6343', '0', '1.85', '0');
 
+DROP TABLE IF EXISTS `spell_threat`;
+INSERT INTO `spell_threat` VALUES 
+('5676', '0', '2', '0'),
+('28176', '0', '0', '0'),
+('8056', '0', '2', '0'),
+('15237', '0', '0', '0'),
+('23455', '0', '0', '0'),
+('32546', '0', '0.5', '0'),
+('33619', '0', '0', '0'),
+('2139', '180', '1', '0'),
+('63611', '0', '0', '0'),
+('45524', '240', '1', '0'),
+('43265', '0', '1.9', '0'),
+('49576', '110', '1', '0'),
+('48743', '0', '0', '0'),
+('65142', '0', '0', '0'),
+('47568', '0', '0', '0'),
+('51209', '112', '1', '0'),
+('49039', '110', '1', '0'),
+('56815', '0', '1.75', '0'),
+('50422', '0', '0', '0'),
+('55090', '51', '1', '0'),
+('17057', '0', '0', '0'),
+('5211', '53', '1', '0'),
+('45334', '40', '1', '0'),
+('34299', '0', '0', '0'),
+('6807', '13', '1', '0'),
+('60089', '638', '1', '0'),
+('33745', '182', '0.5', '0'),
+('779', '0', '1.5', '0'),
+('5209', '98', '1', '0'),
+('29166', '0', '10', '0'),
+('7294', '0', '2', '0'),
+('498', '0', '0', '0'),
+('845', '8', '1', '0'),
+('78', '5', '1', '0'),
+('57755', '0', '1.5', '0'),
+('6572', '7', '1', '0'),
+('23922', '228', '1', '0'),
+('1464', '18', '1', '0'),
+('7386', '345', '1', '0.05'),
+('20243', '0', '1', '0.05'),
+('6343', '0', '1.85', '0');
 
 ALTER TABLE `item_template`
 DROP COLUMN `BuyCount`,
@@ -264,7 +276,7 @@ DROP COLUMN `DisenchantID`,
 DROP COLUMN `FoodType`,
 CHANGE `damageType` `DamageType` TINYINT(3) DEFAULT '0',
 CHANGE `minMoneyLoot` `Field130` INT(11) NOT null DEFAULT '0',
-CHANGE `maxMoneyLoot` `Field131` INT(11) NOT null DEFAULT '0',
+CHANGE `maxMoneyLoot` `Fieldf131` INT(11) NOT null DEFAULT '0',
   ADD COLUMN `stat_unk1_1` int(11) NOT NULL DEFAULT '0' AFTER `stat_value1`,
   ADD COLUMN `stat_unk2_1` int(11) NOT NULL DEFAULT '0' AFTER `stat_unk1_1`,
   ADD COLUMN `stat_unk1_2` int(11) NOT NULL DEFAULT '0' AFTER `stat_value2`,
@@ -314,8 +326,6 @@ CHANGE `event` `eventEntry` int(10) NOT NULL DEFAULT '0';
 ALTER TABLE `game_event_pool`
 CHANGE `event` `eventEntry` smallint(6) NOT NULL DEFAULT '0';
 
-
-DROP TABLE IF EXISTS `item_template_addon`;
 CREATE TABLE `item_template_addon` (
   `Id` int(10) unsigned NOT NULL,
   `BuyCount` tinyint(3) unsigned NOT NULL DEFAULT '1',
@@ -325,737 +335,740 @@ CREATE TABLE `item_template_addon` (
   `SpellPPMChance` float unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-INSERT INTO `item_template_addon` VALUES ('117', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('159', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('414', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('422', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('723', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('724', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('729', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('731', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('733', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('769', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('787', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('961', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1015', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1017', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1081', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1082', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1113', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1114', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1179', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1205', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1326', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1401', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1487', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1645', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1707', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('1708', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2070', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2136', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2287', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2288', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2593', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2594', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2595', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2596', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2672', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2673', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2675', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2677', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2678', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2679', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2680', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2681', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2682', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2683', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2684', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2685', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2686', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2687', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2723', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2886', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2888', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2894', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('2924', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3173', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3220', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3371', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3404', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3448', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3662', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3663', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3664', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3665', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3666', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3667', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3703', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3712', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3726', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3727', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3728', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3729', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3730', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3731', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3770', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3771', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3772', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('3927', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4457', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4536', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4537', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4538', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4539', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4540', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4541', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4542', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4544', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4592', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4593', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4594', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4595', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4599', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4600', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4601', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4602', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4603', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4604', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4605', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4606', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4607', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4608', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4655', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4656', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4739', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('4791', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5051', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5057', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5066', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5095', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5342', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5349', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5350', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5465', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5467', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5468', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5469', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5470', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5471', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5472', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5473', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5474', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5476', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5477', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5478', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5479', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5480', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5503', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5504', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5525', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5526', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('5527', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6038', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6289', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6290', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6291', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6299', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6303', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6308', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6316', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6317', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6361', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6362', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6458', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6522', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6657', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6807', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6887', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6888', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('6890', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('7097', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('7228', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('7676', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('7806', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('7807', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('7808', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('7974', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8075', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8076', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8077', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8078', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8079', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8364', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8365', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8766', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8932', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8948', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8950', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8952', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8953', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8957', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('8959', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('9260', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('9360', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('9361', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('9451', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('9681', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('10841', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('11109', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('11415', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('11444', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('11584', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('11846', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('11950', '1', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('11951', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12003', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12037', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12184', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12202', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12203', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12204', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12205', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12206', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12208', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12209', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12210', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12212', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12213', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12214', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12215', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12216', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12217', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12218', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12223', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12224', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('12238', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13546', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13724', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13754', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13755', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13756', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13758', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13759', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13760', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13810', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13851', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13888', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13889', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13893', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13927', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13928', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13929', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13930', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13931', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13932', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13933', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13934', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('13935', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('15924', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16166', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16167', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16168', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16169', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16170', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16171', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16766', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('16971', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17119', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17196', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17197', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17198', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17222', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17344', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17402', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17403', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17404', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17406', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17407', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('17408', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18045', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18254', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18255', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18287', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18288', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18300', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18632', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18633', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('18635', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19221', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19222', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19223', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19224', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19225', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19299', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19300', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19301', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19304', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19305', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19306', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19696', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19994', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19995', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('19996', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('20031', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('20074', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('20424', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('20452', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('20516', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('20709', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('20857', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21023', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21030', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21031', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21033', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21071', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21072', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21114', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21151', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21153', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21177', '20', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21215', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21217', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21235', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21254', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21552', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('21721', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('22018', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('22019', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('22324', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('22644', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('22645', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('22895', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('23160', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('23495', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('23676', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('23756', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('23848', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('24008', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('24009', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('24072', '1', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('24105', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('24338', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('24477', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('24539', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27422', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27425', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27429', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27435', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27437', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27438', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27439', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27635', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27636', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27651', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27655', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27656', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27657', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27658', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27659', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27660', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27661', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27662', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27663', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27664', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27665', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27666', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27667', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27668', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27669', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27671', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27674', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27677', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27678', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27681', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27682', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27854', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27855', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27856', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27857', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27858', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27859', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('27860', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('28112', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('28284', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('28399', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('28486', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('28501', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29112', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29292', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29393', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29394', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29395', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29401', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29412', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29448', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29449', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29450', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29451', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29452', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29453', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('29454', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30155', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30355', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30357', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30358', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30359', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30361', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30457', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30458', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30610', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30703', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30816', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('30817', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('31672', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('31673', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32453', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32455', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32667', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32668', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32685', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32686', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32721', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32722', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32762', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32763', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32764', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32765', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32766', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('32767', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33004', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33042', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33048', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33052', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33053', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33443', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33444', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33445', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33449', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33451', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33452', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33454', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33825', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33866', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33867', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('33924', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34062', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34125', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34411', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34736', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34747', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34748', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34749', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34750', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34751', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34752', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34753', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34754', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34755', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34756', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34757', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34758', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34759', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34760', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34761', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34762', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34763', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34764', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34765', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34766', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34767', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34768', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34769', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34780', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('34832', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35563', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35565', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35720', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35794', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35947', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35948', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35949', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35950', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35951', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35952', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35953', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('35954', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('36782', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('37252', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('37253', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('37452', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38350', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38427', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38428', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38429', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38430', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38431', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38432', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38466', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38698', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('38706', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('39520', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('39691', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40035', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40036', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40042', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40202', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40356', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40357', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40358', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('40359', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41729', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41731', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41751', '5', '5', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41800', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41801', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41802', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41803', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41805', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41806', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41807', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41808', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41809', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41810', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41812', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41813', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('41814', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42428', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42429', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42430', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42431', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42432', '5', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42433', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42434', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42777', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42778', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42779', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42942', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42993', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42994', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42995', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42996', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42997', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42998', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('42999', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43000', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43001', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43004', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43005', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43009', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43010', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43011', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43012', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43013', '1', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43015', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43087', '1', '6', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43268', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43478', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43480', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43488', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43490', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43491', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43492', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43518', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43523', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43571', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43572', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43646', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43647', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43652', '1', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43695', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('43696', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44049', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44071', '5', '2', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44072', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44114', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44570', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44571', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44573', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44574', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44575', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44607', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44608', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44609', '5', '4', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44616', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44617', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44618', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44619', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44620', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44716', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44722', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44749', '5', '3', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44750', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44791', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44835', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44836', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44837', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44838', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44839', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44840', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44853', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44854', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44855', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44940', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44941', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('44953', '5', '1', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('45279', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('45901', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('45932', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46392', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46690', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46691', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46784', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46793', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46796', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46797', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('46887', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49253', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49254', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49361', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49365', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49397', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49398', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49600', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49601', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49602', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('49603', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('57518', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('57519', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('57543', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('57544', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58256', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58257', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58258', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58259', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58260', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58261', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58262', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58263', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58264', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58265', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58266', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58267', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58268', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58269', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58274', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58275', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58276', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58277', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58278', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58279', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58280', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('58933', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('59029', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('59227', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('59228', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('59229', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('59230', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('59231', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('59232', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60267', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60268', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60269', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60375', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60377', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60378', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60379', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('60858', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61381', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61382', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61383', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61384', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61982', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61983', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61984', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61985', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('61986', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62289', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62290', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62649', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62651', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62652', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62653', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62654', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62655', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62656', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62657', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62658', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62659', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62660', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62661', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62662', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62663', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62664', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62665', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62666', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62667', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62668', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62669', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62670', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62671', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62672', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62674', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62675', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62676', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62677', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62679', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62680', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62790', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62908', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62909', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('62910', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63023', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63251', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63275', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63291', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63292', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63293', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63296', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63299', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63530', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63691', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63692', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63693', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('63694', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('64639', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('64641', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('64670', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('65499', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('65500', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('65515', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('65516', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('65517', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('65730', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('65731', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67230', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67270', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67271', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67272', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67273', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67361', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67362', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67363', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67364', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67365', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67366', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67367', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67368', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67369', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67370', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67371', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67372', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67373', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67374', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67375', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67376', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67377', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67378', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67379', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67380', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67381', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67382', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67383', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('67384', '5', '0', '0', '0', '0');
-INSERT INTO `item_template_addon` VALUES ('68140', '5', '0', '0', '0', '0');
+
+DROP TABLE IF EXISTS `item_template_addon`;
+INSERT INTO `item_template_addon` VALUES 
+('117', '5', '1', '0', '0', '0'),
+('159', '5', '0', '0', '0', '0'),
+('414', '5', '3', '0', '0', '0'),
+('422', '5', '3', '0', '0', '0'),
+('723', '1', '1', '0', '0', '0'),
+('724', '5', '1', '0', '0', '0'),
+('729', '1', '1', '0', '0', '0'),
+('731', '1', '1', '0', '0', '0'),
+('733', '5', '1', '0', '0', '0'),
+('769', '1', '1', '0', '0', '0'),
+('787', '5', '2', '0', '0', '0'),
+('961', '5', '0', '0', '0', '0'),
+('1015', '1', '1', '0', '0', '0'),
+('1017', '5', '1', '0', '0', '0'),
+('1081', '1', '1', '0', '0', '0'),
+('1082', '5', '0', '0', '0', '0'),
+('1113', '5', '4', '0', '0', '0'),
+('1114', '5', '4', '0', '0', '0'),
+('1179', '5', '0', '0', '0', '0'),
+('1205', '5', '0', '0', '0', '0'),
+('1326', '5', '2', '0', '0', '0'),
+('1401', '5', '0', '0', '0', '0'),
+('1487', '5', '4', '0', '0', '0'),
+('1645', '5', '0', '0', '0', '0'),
+('1707', '5', '3', '0', '0', '0'),
+('1708', '5', '0', '0', '0', '0'),
+('2070', '5', '3', '0', '0', '0'),
+('2136', '5', '0', '0', '0', '0'),
+('2287', '5', '1', '0', '0', '0'),
+('2288', '5', '0', '0', '0', '0'),
+('2593', '5', '0', '0', '0', '0'),
+('2594', '5', '0', '0', '0', '0'),
+('2595', '5', '0', '0', '0', '0'),
+('2596', '5', '0', '0', '0', '0'),
+('2672', '1', '1', '0', '0', '0'),
+('2673', '1', '1', '0', '0', '0'),
+('2675', '1', '2', '0', '0', '0'),
+('2677', '1', '1', '0', '0', '0'),
+('2678', '5', '0', '0', '0', '0'),
+('2679', '5', '1', '0', '0', '0'),
+('2680', '5', '1', '0', '0', '0'),
+('2681', '5', '1', '0', '0', '0'),
+('2682', '5', '2', '0', '0', '0'),
+('2683', '5', '4', '0', '0', '0'),
+('2684', '5', '1', '0', '0', '0'),
+('2685', '5', '1', '0', '0', '0'),
+('2686', '5', '0', '0', '0', '0'),
+('2687', '5', '1', '0', '0', '0'),
+('2723', '5', '0', '0', '0', '0'),
+('2886', '1', '1', '0', '0', '0'),
+('2888', '5', '1', '0', '0', '0'),
+('2894', '5', '0', '0', '0', '0'),
+('2924', '1', '1', '0', '0', '0'),
+('3173', '1', '1', '0', '0', '0'),
+('3220', '5', '1', '0', '0', '0'),
+('3371', '5', '0', '0', '0', '0'),
+('3404', '1', '1', '0', '0', '0'),
+('3448', '5', '5', '0', '0', '0'),
+('3662', '5', '1', '0', '0', '0'),
+('3663', '5', '0', '0', '0', '0'),
+('3664', '5', '1', '0', '0', '0'),
+('3665', '5', '3', '0', '0', '0'),
+('3666', '5', '4', '0', '0', '0'),
+('3667', '1', '1', '0', '0', '0'),
+('3703', '5', '0', '0', '0', '0'),
+('3712', '1', '1', '0', '0', '0'),
+('3726', '5', '1', '0', '0', '0'),
+('3727', '5', '1', '0', '0', '0'),
+('3728', '5', '1', '0', '0', '0'),
+('3729', '5', '1', '0', '0', '0'),
+('3730', '1', '1', '0', '0', '0'),
+('3731', '1', '1', '0', '0', '0'),
+('3770', '5', '1', '0', '0', '0'),
+('3771', '5', '1', '0', '0', '0'),
+('3772', '5', '0', '0', '0', '0'),
+('3927', '5', '3', '0', '0', '0'),
+('4457', '5', '1', '0', '0', '0'),
+('4536', '5', '6', '0', '0', '0'),
+('4537', '5', '6', '0', '0', '0'),
+('4538', '5', '6', '0', '0', '0'),
+('4539', '5', '6', '0', '0', '0'),
+('4540', '5', '4', '0', '0', '0'),
+('4541', '5', '4', '0', '0', '0'),
+('4542', '5', '4', '0', '0', '0'),
+('4544', '5', '4', '0', '0', '0'),
+('4592', '5', '2', '0', '0', '0'),
+('4593', '5', '2', '0', '0', '0'),
+('4594', '5', '2', '0', '0', '0'),
+('4595', '5', '0', '0', '0', '0'),
+('4599', '5', '1', '0', '0', '0'),
+('4600', '5', '0', '0', '0', '0'),
+('4601', '5', '4', '0', '0', '0'),
+('4602', '5', '6', '0', '0', '0'),
+('4603', '1', '2', '0', '0', '0'),
+('4604', '5', '5', '0', '0', '0'),
+('4605', '5', '5', '0', '0', '0'),
+('4606', '5', '5', '0', '0', '0'),
+('4607', '5', '5', '0', '0', '0'),
+('4608', '5', '5', '0', '0', '0'),
+('4655', '1', '2', '0', '0', '0'),
+('4656', '5', '6', '0', '0', '0'),
+('4739', '1', '1', '0', '0', '0'),
+('4791', '5', '0', '0', '0', '0'),
+('5051', '1', '1', '0', '0', '0'),
+('5057', '5', '6', '0', '0', '0'),
+('5066', '5', '0', '0', '0', '0'),
+('5095', '5', '2', '0', '0', '0'),
+('5342', '5', '0', '0', '0', '0'),
+('5349', '5', '4', '0', '0', '0'),
+('5350', '5', '0', '0', '0', '0'),
+('5465', '1', '1', '0', '0', '0'),
+('5467', '1', '1', '0', '0', '0'),
+('5468', '1', '2', '0', '0', '0'),
+('5469', '1', '1', '0', '0', '0'),
+('5470', '1', '1', '0', '0', '0'),
+('5471', '1', '1', '0', '0', '0'),
+('5472', '5', '1', '0', '0', '0'),
+('5473', '5', '0', '0', '0', '0'),
+('5474', '5', '1', '0', '0', '0'),
+('5476', '5', '2', '0', '0', '0'),
+('5477', '5', '1', '0', '0', '0'),
+('5478', '5', '1', '0', '0', '0'),
+('5479', '5', '1', '0', '0', '0'),
+('5480', '1', '1', '0', '0', '0'),
+('5503', '1', '2', '0', '0', '0'),
+('5504', '1', '2', '0', '0', '0'),
+('5525', '5', '2', '0', '0', '0'),
+('5526', '5', '2', '0', '0', '0'),
+('5527', '5', '2', '0', '0', '0'),
+('6038', '5', '2', '0', '0', '0'),
+('6289', '1', '2', '0', '0', '0'),
+('6290', '5', '2', '0', '0', '0'),
+('6291', '1', '2', '0', '0', '0'),
+('6299', '5', '0', '0', '0', '0'),
+('6303', '1', '2', '0', '0', '0'),
+('6308', '1', '2', '0', '0', '0'),
+('6316', '5', '2', '0', '0', '0'),
+('6317', '1', '2', '0', '0', '0'),
+('6361', '1', '2', '0', '0', '0'),
+('6362', '1', '2', '0', '0', '0'),
+('6458', '1', '2', '0', '0', '0'),
+('6522', '5', '0', '0', '0', '0'),
+('6657', '5', '0', '0', '0', '0'),
+('6807', '5', '0', '0', '0', '0'),
+('6887', '5', '2', '0', '0', '0'),
+('6888', '5', '0', '0', '0', '0'),
+('6890', '5', '1', '0', '0', '0'),
+('7097', '5', '1', '0', '0', '0'),
+('7228', '5', '0', '0', '0', '0'),
+('7676', '5', '0', '0', '0', '0'),
+('7806', '5', '0', '0', '0', '0'),
+('7807', '5', '0', '0', '0', '0'),
+('7808', '5', '0', '0', '0', '0'),
+('7974', '1', '2', '0', '0', '0'),
+('8075', '5', '4', '0', '0', '0'),
+('8076', '5', '4', '0', '0', '0'),
+('8077', '5', '0', '0', '0', '0'),
+('8078', '5', '0', '0', '0', '0'),
+('8079', '5', '0', '0', '0', '0'),
+('8364', '5', '2', '0', '0', '0'),
+('8365', '1', '2', '0', '0', '0'),
+('8766', '5', '0', '0', '0', '0'),
+('8932', '5', '3', '0', '0', '0'),
+('8948', '5', '5', '0', '0', '0'),
+('8950', '5', '6', '0', '0', '0'),
+('8952', '5', '1', '0', '0', '0'),
+('8953', '5', '6', '0', '0', '0'),
+('8957', '5', '2', '0', '0', '0'),
+('8959', '1', '2', '0', '0', '0'),
+('9260', '5', '0', '0', '0', '0'),
+('9360', '5', '0', '0', '0', '0'),
+('9361', '5', '0', '0', '0', '0'),
+('9451', '5', '0', '0', '0', '0'),
+('9681', '5', '1', '0', '0', '0'),
+('10841', '5', '0', '0', '0', '0'),
+('11109', '5', '0', '0', '0', '0'),
+('11415', '5', '0', '0', '0', '0'),
+('11444', '5', '1', '0', '0', '0'),
+('11584', '5', '1', '0', '0', '0'),
+('11846', '5', '0', '0', '0', '0'),
+('11950', '1', '6', '0', '0', '0'),
+('11951', '5', '0', '0', '0', '0'),
+('12003', '5', '0', '0', '0', '0'),
+('12037', '1', '1', '0', '0', '0'),
+('12184', '1', '1', '0', '0', '0'),
+('12202', '1', '1', '0', '0', '0'),
+('12203', '1', '1', '0', '0', '0'),
+('12204', '1', '1', '0', '0', '0'),
+('12205', '1', '1', '0', '0', '0'),
+('12206', '1', '2', '0', '0', '0'),
+('12208', '1', '1', '0', '0', '0'),
+('12209', '5', '1', '0', '0', '0'),
+('12210', '5', '1', '0', '0', '0'),
+('12212', '5', '1', '0', '0', '0'),
+('12213', '5', '1', '0', '0', '0'),
+('12214', '5', '1', '0', '0', '0'),
+('12215', '5', '1', '0', '0', '0'),
+('12216', '5', '2', '0', '0', '0'),
+('12217', '5', '1', '0', '0', '0'),
+('12218', '5', '3', '0', '0', '0'),
+('12223', '1', '1', '0', '0', '0'),
+('12224', '5', '1', '0', '0', '0'),
+('12238', '5', '2', '0', '0', '0'),
+('13546', '5', '2', '0', '0', '0'),
+('13724', '5', '0', '0', '0', '0'),
+('13754', '1', '2', '0', '0', '0'),
+('13755', '5', '2', '0', '0', '0'),
+('13756', '1', '2', '0', '0', '0'),
+('13758', '1', '2', '0', '0', '0'),
+('13759', '1', '2', '0', '0', '0'),
+('13760', '1', '2', '0', '0', '0'),
+('13810', '5', '0', '0', '0', '0'),
+('13851', '5', '1', '0', '0', '0'),
+('13888', '1', '2', '0', '0', '0'),
+('13889', '1', '2', '0', '0', '0'),
+('13893', '5', '2', '0', '0', '0'),
+('13927', '5', '2', '0', '0', '0'),
+('13928', '5', '2', '0', '0', '0'),
+('13929', '5', '2', '0', '0', '0'),
+('13930', '5', '2', '0', '0', '0'),
+('13931', '5', '2', '0', '0', '0'),
+('13932', '5', '2', '0', '0', '0'),
+('13933', '5', '2', '0', '0', '0'),
+('13934', '5', '2', '0', '0', '0'),
+('13935', '5', '2', '0', '0', '0'),
+('15924', '1', '2', '0', '0', '0'),
+('16166', '5', '0', '0', '0', '0'),
+('16167', '5', '0', '0', '0', '0'),
+('16168', '5', '6', '0', '0', '0'),
+('16169', '5', '4', '0', '0', '0'),
+('16170', '5', '0', '0', '0', '0'),
+('16171', '5', '0', '0', '0', '0'),
+('16766', '5', '2', '0', '0', '0'),
+('16971', '5', '2', '0', '0', '0'),
+('17119', '5', '1', '0', '0', '0'),
+('17196', '5', '0', '0', '0', '0'),
+('17197', '5', '4', '0', '0', '0'),
+('17198', '5', '0', '0', '0', '0'),
+('17222', '5', '1', '0', '0', '0'),
+('17344', '5', '0', '0', '0', '0'),
+('17402', '5', '0', '0', '0', '0'),
+('17403', '5', '0', '0', '0', '0'),
+('17404', '5', '0', '0', '0', '0'),
+('17406', '5', '3', '0', '0', '0'),
+('17407', '5', '0', '0', '0', '0'),
+('17408', '5', '0', '0', '0', '0'),
+('18045', '5', '1', '0', '0', '0'),
+('18254', '5', '0', '0', '0', '0'),
+('18255', '5', '0', '0', '0', '0'),
+('18287', '5', '0', '0', '0', '0'),
+('18288', '5', '0', '0', '0', '0'),
+('18300', '5', '0', '0', '0', '0'),
+('18632', '5', '0', '0', '0', '0'),
+('18633', '5', '0', '0', '0', '0'),
+('18635', '5', '0', '0', '0', '0'),
+('19221', '5', '0', '0', '0', '0'),
+('19222', '5', '0', '0', '0', '0'),
+('19223', '5', '1', '0', '0', '0'),
+('19224', '5', '1', '0', '0', '0'),
+('19225', '5', '0', '0', '0', '0'),
+('19299', '5', '0', '0', '0', '0'),
+('19300', '5', '0', '0', '0', '0'),
+('19301', '5', '0', '0', '0', '0'),
+('19304', '5', '1', '0', '0', '0'),
+('19305', '5', '1', '0', '0', '0'),
+('19306', '5', '1', '0', '0', '0'),
+('19696', '5', '4', '0', '0', '0'),
+('19994', '5', '6', '0', '0', '0'),
+('19995', '5', '1', '0', '0', '0'),
+('19996', '5', '2', '0', '0', '0'),
+('20031', '5', '0', '0', '0', '0'),
+('20074', '5', '1', '0', '0', '0'),
+('20424', '1', '1', '0', '0', '0'),
+('20452', '5', '0', '0', '0', '0'),
+('20516', '5', '0', '0', '0', '0'),
+('20709', '5', '0', '0', '0', '0'),
+('20857', '5', '4', '0', '0', '0'),
+('21023', '5', '1', '0', '0', '0'),
+('21030', '5', '6', '0', '0', '0'),
+('21031', '5', '6', '0', '0', '0'),
+('21033', '5', '6', '0', '0', '0'),
+('21071', '1', '2', '0', '0', '0'),
+('21072', '5', '2', '0', '0', '0'),
+('21114', '5', '0', '0', '0', '0'),
+('21151', '5', '0', '0', '0', '0'),
+('21153', '1', '2', '0', '0', '0'),
+('21177', '20', '0', '0', '0', '0'),
+('21215', '5', '0', '0', '0', '0'),
+('21217', '5', '2', '0', '0', '0'),
+('21235', '5', '1', '0', '0', '0'),
+('21254', '5', '4', '0', '0', '0'),
+('21552', '5', '2', '0', '0', '0'),
+('21721', '5', '0', '0', '0', '0'),
+('22018', '5', '0', '0', '0', '0'),
+('22019', '5', '4', '0', '0', '0'),
+('22324', '5', '0', '0', '0', '0'),
+('22644', '1', '1', '0', '0', '0'),
+('22645', '5', '1', '0', '0', '0'),
+('22895', '5', '4', '0', '0', '0'),
+('23160', '5', '4', '0', '0', '0'),
+('23495', '5', '1', '0', '0', '0'),
+('23676', '1', '1', '0', '0', '0'),
+('23756', '5', '0', '0', '0', '0'),
+('23848', '5', '0', '0', '0', '0'),
+('24008', '5', '5', '0', '0', '0'),
+('24009', '5', '0', '0', '0', '0'),
+('24072', '1', '6', '0', '0', '0'),
+('24105', '5', '1', '0', '0', '0'),
+('24338', '5', '0', '0', '0', '0'),
+('24477', '1', '2', '0', '0', '0'),
+('24539', '5', '5', '0', '0', '0'),
+('27422', '1', '2', '0', '0', '0'),
+('27425', '1', '2', '0', '0', '0'),
+('27429', '1', '2', '0', '0', '0'),
+('27435', '1', '2', '0', '0', '0'),
+('27437', '1', '2', '0', '0', '0'),
+('27438', '1', '2', '0', '0', '0'),
+('27439', '1', '2', '0', '0', '0'),
+('27635', '5', '1', '0', '0', '0'),
+('27636', '5', '1', '0', '0', '0'),
+('27651', '5', '1', '0', '0', '0'),
+('27655', '5', '1', '0', '0', '0'),
+('27656', '5', '0', '0', '0', '0'),
+('27657', '5', '1', '0', '0', '0'),
+('27658', '5', '1', '0', '0', '0'),
+('27659', '5', '1', '0', '0', '0'),
+('27660', '5', '1', '0', '0', '0'),
+('27661', '5', '2', '0', '0', '0'),
+('27662', '5', '2', '0', '0', '0'),
+('27663', '5', '2', '0', '0', '0'),
+('27664', '5', '2', '0', '0', '0'),
+('27665', '5', '2', '0', '0', '0'),
+('27666', '5', '2', '0', '0', '0'),
+('27667', '5', '2', '0', '0', '0'),
+('27668', '1', '1', '0', '0', '0'),
+('27669', '1', '1', '0', '0', '0'),
+('27671', '1', '1', '0', '0', '0'),
+('27674', '1', '1', '0', '0', '0'),
+('27677', '1', '1', '0', '0', '0'),
+('27678', '1', '1', '0', '0', '0'),
+('27681', '1', '1', '0', '0', '0'),
+('27682', '1', '1', '0', '0', '0'),
+('27854', '5', '1', '0', '0', '0'),
+('27855', '5', '4', '0', '0', '0'),
+('27856', '5', '6', '0', '0', '0'),
+('27857', '5', '3', '0', '0', '0'),
+('27858', '5', '2', '0', '0', '0'),
+('27859', '5', '5', '0', '0', '0'),
+('27860', '5', '0', '0', '0', '0'),
+('28112', '5', '5', '0', '0', '0'),
+('28284', '5', '0', '0', '0', '0'),
+('28399', '5', '0', '0', '0', '0'),
+('28486', '5', '4', '0', '0', '0'),
+('28501', '5', '0', '0', '0', '0'),
+('29112', '5', '0', '0', '0', '0'),
+('29292', '5', '1', '0', '0', '0'),
+('29393', '5', '6', '0', '0', '0'),
+('29394', '5', '4', '0', '0', '0'),
+('29395', '5', '0', '0', '0', '0'),
+('29401', '5', '0', '0', '0', '0'),
+('29412', '5', '0', '0', '0', '0'),
+('29448', '5', '3', '0', '0', '0'),
+('29449', '5', '4', '0', '0', '0'),
+('29450', '5', '6', '0', '0', '0'),
+('29451', '5', '1', '0', '0', '0'),
+('29452', '5', '2', '0', '0', '0'),
+('29453', '5', '5', '0', '0', '0'),
+('29454', '5', '0', '0', '0', '0'),
+('30155', '5', '2', '0', '0', '0'),
+('30355', '5', '0', '0', '0', '0'),
+('30357', '5', '0', '0', '0', '0'),
+('30358', '5', '0', '0', '0', '0'),
+('30359', '5', '0', '0', '0', '0'),
+('30361', '5', '0', '0', '0', '0'),
+('30457', '5', '0', '0', '0', '0'),
+('30458', '5', '3', '0', '0', '0'),
+('30610', '5', '1', '0', '0', '0'),
+('30703', '5', '0', '0', '0', '0'),
+('30816', '5', '4', '0', '0', '0'),
+('30817', '5', '4', '0', '0', '0'),
+('31672', '5', '0', '0', '0', '0'),
+('31673', '5', '1', '0', '0', '0'),
+('32453', '5', '0', '0', '0', '0'),
+('32455', '5', '0', '0', '0', '0'),
+('32667', '5', '0', '0', '0', '0'),
+('32668', '5', '0', '0', '0', '0'),
+('32685', '5', '0', '0', '0', '0'),
+('32686', '5', '0', '0', '0', '0'),
+('32721', '5', '0', '0', '0', '0'),
+('32722', '5', '0', '0', '0', '0'),
+('32762', '1', '1', '0', '0', '0'),
+('32763', '1', '1', '0', '0', '0'),
+('32764', '1', '1', '0', '0', '0'),
+('32765', '1', '1', '0', '0', '0'),
+('32766', '1', '1', '0', '0', '0'),
+('32767', '1', '1', '0', '0', '0'),
+('33004', '5', '0', '0', '0', '0'),
+('33042', '5', '0', '0', '0', '0'),
+('33048', '5', '2', '0', '0', '0'),
+('33052', '5', '2', '0', '0', '0'),
+('33053', '5', '2', '0', '0', '0'),
+('33443', '5', '3', '0', '0', '0'),
+('33444', '5', '0', '0', '0', '0'),
+('33445', '5', '0', '0', '0', '0'),
+('33449', '5', '4', '0', '0', '0'),
+('33451', '5', '2', '0', '0', '0'),
+('33452', '5', '5', '0', '0', '0'),
+('33454', '5', '1', '0', '0', '0'),
+('33825', '5', '0', '0', '0', '0'),
+('33866', '5', '0', '0', '0', '0'),
+('33867', '5', '0', '0', '0', '0'),
+('33924', '5', '0', '0', '0', '0'),
+('34062', '5', '0', '0', '0', '0'),
+('34125', '5', '1', '0', '0', '0'),
+('34411', '5', '0', '0', '0', '0'),
+('34736', '1', '1', '0', '0', '0'),
+('34747', '5', '1', '0', '0', '0'),
+('34748', '5', '1', '0', '0', '0'),
+('34749', '5', '1', '0', '0', '0'),
+('34750', '5', '1', '0', '0', '0'),
+('34751', '5', '1', '0', '0', '0'),
+('34752', '5', '1', '0', '0', '0'),
+('34753', '5', '0', '0', '0', '0'),
+('34754', '5', '1', '0', '0', '0'),
+('34755', '5', '1', '0', '0', '0'),
+('34756', '5', '1', '0', '0', '0'),
+('34757', '5', '1', '0', '0', '0'),
+('34758', '5', '1', '0', '0', '0'),
+('34759', '5', '2', '0', '0', '0'),
+('34760', '5', '2', '0', '0', '0'),
+('34761', '5', '2', '0', '0', '0'),
+('34762', '5', '2', '0', '0', '0'),
+('34763', '5', '2', '0', '0', '0'),
+('34764', '5', '2', '0', '0', '0'),
+('34765', '5', '2', '0', '0', '0'),
+('34766', '5', '2', '0', '0', '0'),
+('34767', '5', '2', '0', '0', '0'),
+('34768', '5', '2', '0', '0', '0'),
+('34769', '5', '2', '0', '0', '0'),
+('34780', '5', '0', '0', '0', '0'),
+('34832', '5', '0', '0', '0', '0'),
+('35563', '5', '0', '0', '0', '0'),
+('35565', '5', '0', '0', '0', '0'),
+('35720', '5', '0', '0', '0', '0'),
+('35794', '1', '1', '0', '0', '0'),
+('35947', '5', '5', '0', '0', '0'),
+('35948', '5', '6', '0', '0', '0'),
+('35949', '5', '6', '0', '0', '0'),
+('35950', '5', '4', '0', '0', '0'),
+('35951', '5', '2', '0', '0', '0'),
+('35952', '5', '3', '0', '0', '0'),
+('35953', '5', '1', '0', '0', '0'),
+('35954', '5', '0', '0', '0', '0'),
+('36782', '1', '2', '0', '0', '0'),
+('37252', '5', '6', '0', '0', '0'),
+('37253', '5', '0', '0', '0', '0'),
+('37452', '5', '2', '0', '0', '0'),
+('38350', '5', '0', '0', '0', '0'),
+('38427', '5', '0', '0', '0', '0'),
+('38428', '5', '0', '0', '0', '0'),
+('38429', '5', '0', '0', '0', '0'),
+('38430', '5', '0', '0', '0', '0'),
+('38431', '5', '0', '0', '0', '0'),
+('38432', '5', '0', '0', '0', '0'),
+('38466', '5', '0', '0', '0', '0'),
+('38698', '5', '0', '0', '0', '0'),
+('38706', '5', '0', '0', '0', '0'),
+('39520', '5', '0', '0', '0', '0'),
+('39691', '5', '2', '0', '0', '0'),
+('40035', '5', '0', '0', '0', '0'),
+('40036', '5', '0', '0', '0', '0'),
+('40042', '5', '0', '0', '0', '0'),
+('40202', '5', '1', '0', '0', '0'),
+('40356', '5', '6', '0', '0', '0'),
+('40357', '5', '0', '0', '0', '0'),
+('40358', '5', '1', '0', '0', '0'),
+('40359', '5', '1', '0', '0', '0'),
+('41729', '5', '1', '0', '0', '0'),
+('41731', '5', '0', '0', '0', '0'),
+('41751', '5', '5', '0', '0', '0'),
+('41800', '1', '2', '0', '0', '0'),
+('41801', '1', '2', '0', '0', '0'),
+('41802', '1', '2', '0', '0', '0'),
+('41803', '1', '2', '0', '0', '0'),
+('41805', '1', '2', '0', '0', '0'),
+('41806', '1', '2', '0', '0', '0'),
+('41807', '1', '2', '0', '0', '0'),
+('41808', '1', '2', '0', '0', '0'),
+('41809', '1', '2', '0', '0', '0'),
+('41810', '1', '2', '0', '0', '0'),
+('41812', '1', '2', '0', '0', '0'),
+('41813', '1', '2', '0', '0', '0'),
+('41814', '1', '2', '0', '0', '0'),
+('42428', '5', '0', '0', '0', '0'),
+('42429', '5', '0', '0', '0', '0'),
+('42430', '5', '0', '0', '0', '0'),
+('42431', '5', '0', '0', '0', '0'),
+('42432', '5', '6', '0', '0', '0'),
+('42433', '5', '0', '0', '0', '0'),
+('42434', '5', '0', '0', '0', '0'),
+('42777', '5', '0', '0', '0', '0'),
+('42778', '5', '0', '0', '0', '0'),
+('42779', '5', '1', '0', '0', '0'),
+('42942', '5', '2', '0', '0', '0'),
+('42993', '5', '2', '0', '0', '0'),
+('42994', '5', '1', '0', '0', '0'),
+('42995', '5', '1', '0', '0', '0'),
+('42996', '5', '2', '0', '0', '0'),
+('42997', '5', '1', '0', '0', '0'),
+('42998', '5', '2', '0', '0', '0'),
+('42999', '5', '2', '0', '0', '0'),
+('43000', '5', '2', '0', '0', '0'),
+('43001', '5', '1', '0', '0', '0'),
+('43004', '5', '0', '0', '0', '0'),
+('43005', '5', '1', '0', '0', '0'),
+('43009', '1', '1', '0', '0', '0'),
+('43010', '1', '1', '0', '0', '0'),
+('43011', '1', '1', '0', '0', '0'),
+('43012', '1', '1', '0', '0', '0'),
+('43013', '1', '1', '0', '0', '0'),
+('43015', '5', '0', '0', '0', '0'),
+('43087', '1', '6', '0', '0', '0'),
+('43268', '1', '2', '0', '0', '0'),
+('43478', '5', '0', '0', '0', '0'),
+('43480', '5', '0', '0', '0', '0'),
+('43488', '5', '0', '0', '0', '0'),
+('43490', '5', '0', '0', '0', '0'),
+('43491', '5', '0', '0', '0', '0'),
+('43492', '5', '0', '0', '0', '0'),
+('43518', '5', '0', '0', '0', '0'),
+('43523', '5', '0', '0', '0', '0'),
+('43571', '1', '2', '0', '0', '0'),
+('43572', '1', '2', '0', '0', '0'),
+('43646', '1', '2', '0', '0', '0'),
+('43647', '1', '2', '0', '0', '0'),
+('43652', '1', '2', '0', '0', '0'),
+('43695', '5', '0', '0', '0', '0'),
+('43696', '5', '0', '0', '0', '0'),
+('44049', '5', '2', '0', '0', '0'),
+('44071', '5', '2', '0', '0', '0'),
+('44072', '5', '1', '0', '0', '0'),
+('44114', '5', '0', '0', '0', '0'),
+('44570', '5', '0', '0', '0', '0'),
+('44571', '5', '0', '0', '0', '0'),
+('44573', '5', '0', '0', '0', '0'),
+('44574', '5', '0', '0', '0', '0'),
+('44575', '5', '0', '0', '0', '0'),
+('44607', '5', '3', '0', '0', '0'),
+('44608', '5', '3', '0', '0', '0'),
+('44609', '5', '4', '0', '0', '0'),
+('44616', '5', '0', '0', '0', '0'),
+('44617', '5', '0', '0', '0', '0'),
+('44618', '5', '0', '0', '0', '0'),
+('44619', '5', '0', '0', '0', '0'),
+('44620', '5', '0', '0', '0', '0'),
+('44716', '5', '0', '0', '0', '0'),
+('44722', '5', '0', '0', '0', '0'),
+('44749', '5', '3', '0', '0', '0'),
+('44750', '5', '0', '0', '0', '0'),
+('44791', '5', '0', '0', '0', '0'),
+('44835', '5', '0', '0', '0', '0'),
+('44836', '5', '0', '0', '0', '0'),
+('44837', '5', '0', '0', '0', '0'),
+('44838', '5', '0', '0', '0', '0'),
+('44839', '5', '0', '0', '0', '0'),
+('44840', '5', '0', '0', '0', '0'),
+('44853', '5', '0', '0', '0', '0'),
+('44854', '5', '0', '0', '0', '0'),
+('44855', '5', '0', '0', '0', '0'),
+('44940', '5', '0', '0', '0', '0'),
+('44941', '5', '0', '0', '0', '0'),
+('44953', '5', '1', '0', '0', '0'),
+('45279', '5', '0', '0', '0', '0'),
+('45901', '5', '0', '0', '0', '0'),
+('45932', '5', '0', '0', '0', '0'),
+('46392', '5', '0', '0', '0', '0'),
+('46690', '5', '0', '0', '0', '0'),
+('46691', '5', '0', '0', '0', '0'),
+('46784', '5', '0', '0', '0', '0'),
+('46793', '5', '0', '0', '0', '0'),
+('46796', '5', '0', '0', '0', '0'),
+('46797', '5', '0', '0', '0', '0'),
+('46887', '5', '0', '0', '0', '0'),
+('49253', '5', '0', '0', '0', '0'),
+('49254', '5', '0', '0', '0', '0'),
+('49361', '5', '0', '0', '0', '0'),
+('49365', '5', '0', '0', '0', '0'),
+('49397', '5', '0', '0', '0', '0'),
+('49398', '5', '0', '0', '0', '0'),
+('49600', '5', '0', '0', '0', '0'),
+('49601', '5', '0', '0', '0', '0'),
+('49602', '5', '0', '0', '0', '0'),
+('49603', '5', '0', '0', '0', '0'),
+('57518', '5', '0', '0', '0', '0'),
+('57519', '5', '0', '0', '0', '0'),
+('57543', '5', '0', '0', '0', '0'),
+('57544', '5', '0', '0', '0', '0'),
+('58256', '5', '0', '0', '0', '0'),
+('58257', '5', '0', '0', '0', '0'),
+('58258', '5', '0', '0', '0', '0'),
+('58259', '5', '0', '0', '0', '0'),
+('58260', '5', '0', '0', '0', '0'),
+('58261', '5', '0', '0', '0', '0'),
+('58262', '5', '0', '0', '0', '0'),
+('58263', '5', '0', '0', '0', '0'),
+('58264', '5', '0', '0', '0', '0'),
+('58265', '5', '0', '0', '0', '0'),
+('58266', '5', '0', '0', '0', '0'),
+('58267', '5', '0', '0', '0', '0'),
+('58268', '5', '0', '0', '0', '0'),
+('58269', '5', '0', '0', '0', '0'),
+('58274', '5', '0', '0', '0', '0'),
+('58275', '5', '0', '0', '0', '0'),
+('58276', '5', '0', '0', '0', '0'),
+('58277', '5', '0', '0', '0', '0'),
+('58278', '5', '0', '0', '0', '0'),
+('58279', '5', '0', '0', '0', '0'),
+('58280', '5', '0', '0', '0', '0'),
+('58933', '5', '0', '0', '0', '0'),
+('59029', '5', '0', '0', '0', '0'),
+('59227', '5', '0', '0', '0', '0'),
+('59228', '5', '0', '0', '0', '0'),
+('59229', '5', '0', '0', '0', '0'),
+('59230', '5', '0', '0', '0', '0'),
+('59231', '5', '0', '0', '0', '0'),
+('59232', '5', '0', '0', '0', '0'),
+('60267', '5', '0', '0', '0', '0'),
+('60268', '5', '0', '0', '0', '0'),
+('60269', '5', '0', '0', '0', '0'),
+('60375', '5', '0', '0', '0', '0'),
+('60377', '5', '0', '0', '0', '0'),
+('60378', '5', '0', '0', '0', '0'),
+('60379', '5', '0', '0', '0', '0'),
+('60858', '5', '0', '0', '0', '0'),
+('61381', '5', '0', '0', '0', '0'),
+('61382', '5', '0', '0', '0', '0'),
+('61383', '5', '0', '0', '0', '0'),
+('61384', '5', '0', '0', '0', '0'),
+('61982', '5', '0', '0', '0', '0'),
+('61983', '5', '0', '0', '0', '0'),
+('61984', '5', '0', '0', '0', '0'),
+('61985', '5', '0', '0', '0', '0'),
+('61986', '5', '0', '0', '0', '0'),
+('62289', '5', '0', '0', '0', '0'),
+('62290', '5', '0', '0', '0', '0'),
+('62649', '5', '0', '0', '0', '0'),
+('62651', '5', '0', '0', '0', '0'),
+('62652', '5', '0', '0', '0', '0'),
+('62653', '5', '0', '0', '0', '0'),
+('62654', '5', '0', '0', '0', '0'),
+('62655', '5', '0', '0', '0', '0'),
+('62656', '5', '0', '0', '0', '0'),
+('62657', '5', '0', '0', '0', '0'),
+('62658', '5', '0', '0', '0', '0'),
+('62659', '5', '0', '0', '0', '0'),
+('62660', '5', '0', '0', '0', '0'),
+('62661', '5', '0', '0', '0', '0'),
+('62662', '5', '0', '0', '0', '0'),
+('62663', '5', '0', '0', '0', '0'),
+('62664', '5', '0', '0', '0', '0'),
+('62665', '5', '0', '0', '0', '0'),
+('62666', '5', '0', '0', '0', '0'),
+('62667', '5', '0', '0', '0', '0'),
+('62668', '5', '0', '0', '0', '0'),
+('62669', '5', '0', '0', '0', '0'),
+('62670', '5', '0', '0', '0', '0'),
+('62671', '5', '0', '0', '0', '0'),
+('62672', '5', '0', '0', '0', '0'),
+('62674', '5', '0', '0', '0', '0'),
+('62675', '5', '0', '0', '0', '0'),
+('62676', '5', '0', '0', '0', '0'),
+('62677', '5', '0', '0', '0', '0'),
+('62679', '5', '0', '0', '0', '0'),
+('62680', '5', '0', '0', '0', '0'),
+('62790', '5', '0', '0', '0', '0'),
+('62908', '5', '0', '0', '0', '0'),
+('62909', '5', '0', '0', '0', '0'),
+('62910', '5', '0', '0', '0', '0'),
+('63023', '5', '0', '0', '0', '0'),
+('63251', '5', '0', '0', '0', '0'),
+('63275', '5', '0', '0', '0', '0'),
+('63291', '5', '0', '0', '0', '0'),
+('63292', '5', '0', '0', '0', '0'),
+('63293', '5', '0', '0', '0', '0'),
+('63296', '5', '0', '0', '0', '0'),
+('63299', '5', '0', '0', '0', '0'),
+('63530', '5', '0', '0', '0', '0'),
+('63691', '5', '0', '0', '0', '0'),
+('63692', '5', '0', '0', '0', '0'),
+('63693', '5', '0', '0', '0', '0'),
+('63694', '5', '0', '0', '0', '0'),
+('64639', '5', '0', '0', '0', '0'),
+('64641', '5', '0', '0', '0', '0'),
+('64670', '5', '0', '0', '0', '0'),
+('65499', '5', '0', '0', '0', '0'),
+('65500', '5', '0', '0', '0', '0'),
+('65515', '5', '0', '0', '0', '0'),
+('65516', '5', '0', '0', '0', '0'),
+('65517', '5', '0', '0', '0', '0'),
+('65730', '5', '0', '0', '0', '0'),
+('65731', '5', '0', '0', '0', '0'),
+('67230', '5', '0', '0', '0', '0'),
+('67270', '5', '0', '0', '0', '0'),
+('67271', '5', '0', '0', '0', '0'),
+('67272', '5', '0', '0', '0', '0'),
+('67273', '5', '0', '0', '0', '0'),
+('67361', '5', '0', '0', '0', '0'),
+('67362', '5', '0', '0', '0', '0'),
+('67363', '5', '0', '0', '0', '0'),
+('67364', '5', '0', '0', '0', '0'),
+('67365', '5', '0', '0', '0', '0'),
+('67366', '5', '0', '0', '0', '0'),
+('67367', '5', '0', '0', '0', '0'),
+('67368', '5', '0', '0', '0', '0'),
+('67369', '5', '0', '0', '0', '0'),
+('67370', '5', '0', '0', '0', '0'),
+('67371', '5', '0', '0', '0', '0'),
+('67372', '5', '0', '0', '0', '0'),
+('67373', '5', '0', '0', '0', '0'),
+('67374', '5', '0', '0', '0', '0'),
+('67375', '5', '0', '0', '0', '0'),
+('67376', '5', '0', '0', '0', '0'),
+('67377', '5', '0', '0', '0', '0'),
+('67378', '5', '0', '0', '0', '0'),
+('67379', '5', '0', '0', '0', '0'),
+('67380', '5', '0', '0', '0', '0'),
+('67381', '5', '0', '0', '0', '0'),
+('67382', '5', '0', '0', '0', '0'),
+('67383', '5', '0', '0', '0', '0'),
+('67384', '5', '0', '0', '0', '0'),
+('68140', '5', '0', '0', '0', '0');
 
 DROP TABLE IF EXISTS `item_script_names`;
 CREATE TABLE `item_script_names` (
@@ -1063,29 +1076,27 @@ CREATE TABLE `item_script_names` (
   `ScriptName` varchar(64) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-INSERT INTO `item_script_names` VALUES ('5397', 'item_defias_gunpowder');
-INSERT INTO `item_script_names` VALUES ('24538', 'item_only_for_flight');
-INSERT INTO `item_script_names` VALUES ('31088', 'item_tainted_core');
-INSERT INTO `item_script_names` VALUES ('31742', 'item_nether_wraith_beacon');
-INSERT INTO `item_script_names` VALUES ('33098', 'item_petrov_cluster_bombs');
-INSERT INTO `item_script_names` VALUES ('34060', 'item_flying_machine');
-INSERT INTO `item_script_names` VALUES ('34061', 'item_flying_machine');
-INSERT INTO `item_script_names` VALUES ('34475', 'item_only_for_flight');
-INSERT INTO `item_script_names` VALUES ('34489', 'item_only_for_flight');
-INSERT INTO `item_script_names` VALUES ('35127', 'item_pile_fake_furs');
-INSERT INTO `item_script_names` VALUES ('35228', 'item_dehta_trap_smasher');
-INSERT INTO `item_script_names` VALUES ('39253', 'item_harvesters_gift');
-INSERT INTO `item_script_names` VALUES ('39878', 'item_mysterious_egg');
-INSERT INTO `item_script_names` VALUES ('44717', 'item_disgusting_jar');
 
+INSERT INTO `item_script_names` VALUES 
+('5397', 'item_defias_gunpowder'),
+('24538', 'item_only_for_flight'),
+('31088', 'item_tainted_core'),
+('31742', 'item_nether_wraith_beacon'),
+('33098', 'item_petrov_cluster_bombs'),
+('34060', 'item_flying_machine'),
+('34061', 'item_flying_machine'),
+('34475', 'item_only_for_flight'),
+('34489', 'item_only_for_flight'),
+('35127', 'item_pile_fake_furs'),
+('35228', 'item_dehta_trap_smasher'),
+('39253', 'item_harvesters_gift'),
+('39878', 'item_mysterious_egg'),
+('44717', 'item_disgusting_jar');
 
-  
 ALTER TABLE `creature_equip_template`
 CHANGE `equipentry1` `ItemEntry1` mediumint(8) NOT NULL DEFAULT '0',
 CHANGE `equipentry2` `ItemEntry2` mediumint(8) NOT NULL DEFAULT '0',
 CHANGE `equipentry3` `ItemEntry3` mediumint(8) NOT NULL DEFAULT '0';
-
-
 
 DROP TABLE IF EXISTS `vehicle_template_accessory`;
 CREATE TABLE `vehicle_template_accessory` (
@@ -1098,23 +1109,25 @@ CREATE TABLE `vehicle_template_accessory` (
   `summontimer` int(10) unsigned NOT NULL DEFAULT '30000' COMMENT 'timer, only relevant for certain summontypes',
   PRIMARY KEY (`entry`,`seat_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
-INSERT INTO `vehicle_template_accessory` VALUES ('32840', '32839', '2', '1', 'Plate Holder - Sturdy Plate', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32840', '32839', '0', '1', 'Plate Holder - Sturdy Plate', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32840', '32839', '1', '1', 'Plate Holder - Sturdy Plate', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32830', '32829', '4', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Pie', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32830', '32825', '3', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Yams', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32830', '32831', '2', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Stuffing', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32830', '32827', '1', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Cranberry Sauce', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32823', '32840', '6', '1', 'Bountiful Table - Plate Holder', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32830', '32824', '0', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Turkey', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32823', '32830', '5', '1', 'Bountiful Table - Food Holder', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32823', '34824', '3', '1', 'Bountiful Table - The Sweet Potato Chair', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32823', '34822', '4', '1', 'Bountiful Table - The Pie Chair', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32823', '34819', '2', '1', 'Bountiful Table - The Stuffing Chair', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32823', '34823', '1', '1', 'Bountiful Table - The Cranberry Chair', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32823', '34812', '0', '1', 'Bountiful Table - The Turkey Chair', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32840', '32839', '3', '1', 'Plate Holder - Sturdy Plate', '8', '0');
-INSERT INTO `vehicle_template_accessory` VALUES ('32840', '32839', '4', '1', 'Plate Holder - Sturdy Plate', '8', '0');
+
+INSERT INTO `vehicle_template_accessory` VALUES 
+('32840', '32839', '2', '1', 'Plate Holder - Sturdy Plate', '8', '0'),
+('32840', '32839', '0', '1', 'Plate Holder - Sturdy Plate', '8', '0'),
+('32840', '32839', '1', '1', 'Plate Holder - Sturdy Plate', '8', '0'),
+('32830', '32829', '4', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Pie', '8', '0'),
+('32830', '32825', '3', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Yams', '8', '0'),
+('32830', '32831', '2', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Stuffing', '8', '0'),
+('32830', '32827', '1', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Cranberry Sauce', '8', '0'),
+('32823', '32840', '6', '1', 'Bountiful Table - Plate Holder', '8', '0'),
+('32830', '32824', '0', '1', 'Food Holder - [PH] Pilgrim\'s Bounty Table - Turkey', '8', '0'),
+('32823', '32830', '5', '1', 'Bountiful Table - Food Holder', '8', '0'),
+('32823', '34824', '3', '1', 'Bountiful Table - The Sweet Potato Chair', '8', '0'),
+('32823', '34822', '4', '1', 'Bountiful Table - The Pie Chair', '8', '0'),
+('32823', '34819', '2', '1', 'Bountiful Table - The Stuffing Chair', '8', '0'),
+('32823', '34823', '1', '1', 'Bountiful Table - The Cranberry Chair', '8', '0'),
+('32823', '34812', '0', '1', 'Bountiful Table - The Turkey Chair', '8', '0'),
+('32840', '32839', '3', '1', 'Plate Holder - Sturdy Plate', '8', '0'),
+('32840', '32839', '4', '1', 'Plate Holder - Sturdy Plate', '8', '0');
 
 ALTER TABLE `vehicle_accessory`
 CHANGE `entry` `guid` mediumint(8) NOT NULL DEFAULT '0',
@@ -1128,151 +1141,152 @@ CREATE TABLE `battlemaster_entry` (
   PRIMARY KEY (`entry`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `battlemaster_entry` VALUES ('347', '1');
-INSERT INTO `battlemaster_entry` VALUES ('5118', '1');
-INSERT INTO `battlemaster_entry` VALUES ('7410', '1');
-INSERT INTO `battlemaster_entry` VALUES ('7427', '1');
-INSERT INTO `battlemaster_entry` VALUES ('12197', '1');
-INSERT INTO `battlemaster_entry` VALUES ('14942', '1');
-INSERT INTO `battlemaster_entry` VALUES ('16695', '1');
-INSERT INTO `battlemaster_entry` VALUES ('19906', '1');
-INSERT INTO `battlemaster_entry` VALUES ('19907', '1');
-INSERT INTO `battlemaster_entry` VALUES ('20119', '1');
-INSERT INTO `battlemaster_entry` VALUES ('20271', '1');
-INSERT INTO `battlemaster_entry` VALUES ('20276', '1');
-INSERT INTO `battlemaster_entry` VALUES ('35019', '30');
-INSERT INTO `battlemaster_entry` VALUES ('2302', '2');
-INSERT INTO `battlemaster_entry` VALUES ('2804', '2');
-INSERT INTO `battlemaster_entry` VALUES ('3890', '2');
-INSERT INTO `battlemaster_entry` VALUES ('10360', '2');
-INSERT INTO `battlemaster_entry` VALUES ('14981', '2');
-INSERT INTO `battlemaster_entry` VALUES ('14982', '2');
-INSERT INTO `battlemaster_entry` VALUES ('16696', '2');
-INSERT INTO `battlemaster_entry` VALUES ('19908', '2');
-INSERT INTO `battlemaster_entry` VALUES ('19910', '2');
-INSERT INTO `battlemaster_entry` VALUES ('20002', '2');
-INSERT INTO `battlemaster_entry` VALUES ('20118', '2');
-INSERT INTO `battlemaster_entry` VALUES ('20269', '2');
-INSERT INTO `battlemaster_entry` VALUES ('20272', '2');
-INSERT INTO `battlemaster_entry` VALUES ('35027', '30');
-INSERT INTO `battlemaster_entry` VALUES ('857', '3');
-INSERT INTO `battlemaster_entry` VALUES ('907', '3');
-INSERT INTO `battlemaster_entry` VALUES ('12198', '3');
-INSERT INTO `battlemaster_entry` VALUES ('15006', '3');
-INSERT INTO `battlemaster_entry` VALUES ('15007', '3');
-INSERT INTO `battlemaster_entry` VALUES ('15008', '3');
-INSERT INTO `battlemaster_entry` VALUES ('16694', '3');
-INSERT INTO `battlemaster_entry` VALUES ('35020', '30');
-INSERT INTO `battlemaster_entry` VALUES ('19905', '3');
-INSERT INTO `battlemaster_entry` VALUES ('20120', '3');
-INSERT INTO `battlemaster_entry` VALUES ('20273', '3');
-INSERT INTO `battlemaster_entry` VALUES ('20274', '3');
-INSERT INTO `battlemaster_entry` VALUES ('35021', '30');
-INSERT INTO `battlemaster_entry` VALUES ('19915', '6');
-INSERT INTO `battlemaster_entry` VALUES ('19859', '6');
-INSERT INTO `battlemaster_entry` VALUES ('25991', '6');
-INSERT INTO `battlemaster_entry` VALUES ('20499', '6');
-INSERT INTO `battlemaster_entry` VALUES ('20497', '6');
-INSERT INTO `battlemaster_entry` VALUES ('18895', '6');
-INSERT INTO `battlemaster_entry` VALUES ('19923', '6');
-INSERT INTO `battlemaster_entry` VALUES ('19911', '6');
-INSERT INTO `battlemaster_entry` VALUES ('21235', '6');
-INSERT INTO `battlemaster_entry` VALUES ('20362', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20374', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20381', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20382', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20383', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20384', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20385', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20386', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20388', '7');
-INSERT INTO `battlemaster_entry` VALUES ('20390', '7');
-INSERT INTO `battlemaster_entry` VALUES ('22013', '7');
-INSERT INTO `battlemaster_entry` VALUES ('22015', '7');
-INSERT INTO `battlemaster_entry` VALUES ('14990', '3');
-INSERT INTO `battlemaster_entry` VALUES ('14991', '3');
-INSERT INTO `battlemaster_entry` VALUES ('15102', '2');
-INSERT INTO `battlemaster_entry` VALUES ('15105', '2');
-INSERT INTO `battlemaster_entry` VALUES ('15106', '1');
-INSERT INTO `battlemaster_entry` VALUES ('15103', '1');
-INSERT INTO `battlemaster_entry` VALUES ('29568', '6');
-INSERT INTO `battlemaster_entry` VALUES ('19858', '6');
-INSERT INTO `battlemaster_entry` VALUES ('32333', '6');
-INSERT INTO `battlemaster_entry` VALUES ('32332', '6');
-INSERT INTO `battlemaster_entry` VALUES ('29672', '2');
-INSERT INTO `battlemaster_entry` VALUES ('29673', '3');
-INSERT INTO `battlemaster_entry` VALUES ('29674', '1');
-INSERT INTO `battlemaster_entry` VALUES ('29675', '7');
-INSERT INTO `battlemaster_entry` VALUES ('29676', '9');
-INSERT INTO `battlemaster_entry` VALUES ('34989', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34988', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34986', '32');
-INSERT INTO `battlemaster_entry` VALUES ('35007', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34991', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34997', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34998', '32');
-INSERT INTO `battlemaster_entry` VALUES ('35000', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34999', '32');
-INSERT INTO `battlemaster_entry` VALUES ('35002', '32');
-INSERT INTO `battlemaster_entry` VALUES ('35001', '32');
-INSERT INTO `battlemaster_entry` VALUES ('19925', '6');
-INSERT INTO `battlemaster_entry` VALUES ('32330', '6');
-INSERT INTO `battlemaster_entry` VALUES ('19909', '6');
-INSERT INTO `battlemaster_entry` VALUES ('29533', '6');
-INSERT INTO `battlemaster_entry` VALUES ('30610', '6');
-INSERT INTO `battlemaster_entry` VALUES ('19912', '6');
-INSERT INTO `battlemaster_entry` VALUES ('22656', '1');
-INSERT INTO `battlemaster_entry` VALUES ('22647', '1');
-INSERT INTO `battlemaster_entry` VALUES ('26007', '6');
-INSERT INTO `battlemaster_entry` VALUES ('30567', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30566', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30231', '3');
-INSERT INTO `battlemaster_entry` VALUES ('29667', '2');
-INSERT INTO `battlemaster_entry` VALUES ('29668', '3');
-INSERT INTO `battlemaster_entry` VALUES ('29669', '1');
-INSERT INTO `battlemaster_entry` VALUES ('29670', '7');
-INSERT INTO `battlemaster_entry` VALUES ('29671', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30578', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30579', '9');
-INSERT INTO `battlemaster_entry` VALUES ('32617', '1');
-INSERT INTO `battlemaster_entry` VALUES ('32619', '3');
-INSERT INTO `battlemaster_entry` VALUES ('32620', '7');
-INSERT INTO `battlemaster_entry` VALUES ('32623', '9');
-INSERT INTO `battlemaster_entry` VALUES ('32625', '2');
-INSERT INTO `battlemaster_entry` VALUES ('32616', '1');
-INSERT INTO `battlemaster_entry` VALUES ('32622', '9');
-INSERT INTO `battlemaster_entry` VALUES ('32621', '7');
-INSERT INTO `battlemaster_entry` VALUES ('32618', '3');
-INSERT INTO `battlemaster_entry` VALUES ('32624', '2');
-INSERT INTO `battlemaster_entry` VALUES ('30581', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30587', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30590', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30586', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30584', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30580', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30583', '9');
-INSERT INTO `battlemaster_entry` VALUES ('30582', '9');
-INSERT INTO `battlemaster_entry` VALUES ('34983', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34985', '32');
-INSERT INTO `battlemaster_entry` VALUES ('35008', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34955', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34987', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34972', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34973', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34976', '32');
-INSERT INTO `battlemaster_entry` VALUES ('34978', '32');
-INSERT INTO `battlemaster_entry` VALUES ('35023', '30');
-INSERT INTO `battlemaster_entry` VALUES ('35024', '30');
-INSERT INTO `battlemaster_entry` VALUES ('35026', '30');
-INSERT INTO `battlemaster_entry` VALUES ('35022', '30');
-INSERT INTO `battlemaster_entry` VALUES ('35017', '30');
-INSERT INTO `battlemaster_entry` VALUES ('35025', '30');
-INSERT INTO `battlemaster_entry` VALUES ('34952', '30');
-INSERT INTO `battlemaster_entry` VALUES ('34953', '30');
-INSERT INTO `battlemaster_entry` VALUES ('34950', '30');
-INSERT INTO `battlemaster_entry` VALUES ('34948', '30');
-INSERT INTO `battlemaster_entry` VALUES ('34949', '30');
-INSERT INTO `battlemaster_entry` VALUES ('34951', '30');
+INSERT INTO `battlemaster_entry` VALUES 
+('347', '1'),
+('5118', '1'),
+('7410', '1'),
+('7427', '1'),
+('12197', '1'),
+('14942', '1'),
+('16695', '1'),
+('19906', '1'),
+('19907', '1'),
+('20119', '1'),
+('20271', '1'),
+('20276', '1'),
+('35019', '30'),
+('2302', '2'),
+('2804', '2'),
+('3890', '2'),
+('10360', '2'),
+('14981', '2'),
+('14982', '2'),
+('16696', '2'),
+('19908', '2'),
+('19910', '2'),
+('20002', '2'),
+('20118', '2'),
+('20269', '2'),
+('20272', '2'),
+('35027', '30'),
+('857', '3'),
+('907', '3'),
+('12198', '3'),
+('15006', '3'),
+('15007', '3'),
+('15008', '3'),
+('16694', '3'),
+('35020', '30'),
+('19905', '3'),
+('20120', '3'),
+('20273', '3'),
+('20274', '3'),
+('35021', '30'),
+('19915', '6'),
+('19859', '6'),
+('25991', '6'),
+('20499', '6'),
+('20497', '6'),
+('18895', '6'),
+('19923', '6'),
+('19911', '6'),
+('21235', '6'),
+('20362', '7'),
+('20374', '7'),
+('20381', '7'),
+('20382', '7'),
+('20383', '7'),
+('20384', '7'),
+('20385', '7'),
+('20386', '7'),
+('20388', '7'),
+('20390', '7'),
+('22013', '7'),
+('22015', '7'),
+('14990', '3'),
+('14991', '3'),
+('15102', '2'),
+('15105', '2'),
+('15106', '1'),
+('15103', '1'),
+('29568', '6'),
+('19858', '6'),
+('32333', '6'),
+('32332', '6'),
+('29672', '2'),
+('29673', '3'),
+('29674', '1'),
+('29675', '7'),
+('29676', '9'),
+('34989', '32'),
+('34988', '32'),
+('34986', '32'),
+('35007', '32'),
+('34991', '32'),
+('34997', '32'),
+('34998', '32'),
+('35000', '32'),
+('34999', '32'),
+('35002', '32'),
+('35001', '32'),
+('19925', '6'),
+('32330', '6'),
+('19909', '6'),
+('29533', '6'),
+('30610', '6'),
+('19912', '6'),
+('22656', '1'),
+('22647', '1'),
+('26007', '6'),
+('30567', '9'),
+('30566', '9'),
+('30231', '3'),
+('29667', '2'),
+('29668', '3'),
+('29669', '1'),
+('29670', '7'),
+('29671', '9'),
+('30578', '9'),
+('30579', '9'),
+('32617', '1'),
+('32619', '3'),
+('32620', '7'),
+('32623', '9'),
+('32625', '2'),
+('32616', '1'),
+('32622', '9'),
+('32621', '7'),
+('32618', '3'),
+('32624', '2'),
+('30581', '9'),
+('30587', '9'),
+('30590', '9'),
+('30586', '9'),
+('30584', '9'),
+('30580', '9'),
+('30583', '9'),
+('30582', '9'),
+('34983', '32'),
+('34985', '32'),
+('35008', '32'),
+('34955', '32'),
+('34987', '32'),
+('34972', '32'),
+('34973', '32'),
+('34976', '32'),
+('34978', '32'),
+('35023', '30'),
+('35024', '30'),
+('35026', '30'),
+('35022', '30'),
+('35017', '30'),
+('35025', '30'),
+('34952', '30'),
+('34953', '30'),
+('34950', '30'),
+('34948', '30'),
+('34949', '30'),
+('34951', '30');
 
 DROP TABLE IF EXISTS `game_event_arena_seasons`;
 CREATE TABLE `game_event_arena_seasons` (
@@ -1280,14 +1294,15 @@ CREATE TABLE `game_event_arena_seasons` (
   `season` tinyint(3) unsigned NOT NULL COMMENT 'Arena season number',
   UNIQUE KEY `season` (`season`,`eventEntry`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-INSERT INTO `game_event_arena_seasons` VALUES ('126', '3');
-INSERT INTO `game_event_arena_seasons` VALUES ('127', '4');
-INSERT INTO `game_event_arena_seasons` VALUES ('128', '5');
-INSERT INTO `game_event_arena_seasons` VALUES ('129', '6');
-INSERT INTO `game_event_arena_seasons` VALUES ('130', '7');
-INSERT INTO `game_event_arena_seasons` VALUES ('131', '8');
-INSERT INTO `game_event_arena_seasons` VALUES ('132', '9');
 
+INSERT INTO `game_event_arena_seasons` VALUES 
+('126', '3'),
+('127', '4'),
+('128', '5'),
+('129', '6'),
+('130', '7'),
+('131', '8'),
+('132', '9');
 
 DROP TABLE IF EXISTS `creature_onkill_reward`;
 CREATE TABLE `creature_onkill_reward` (
@@ -1309,2779 +1324,2784 @@ CREATE TABLE `creature_onkill_reward` (
   `CurrencyCount3` mediumint(9) NOT NULL DEFAULT '0',
   PRIMARY KEY (`creature_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='Creature OnKill Reputation gain';
-INSERT INTO `creature_onkill_reward` VALUES ('2496', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3381', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3382', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3383', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3384', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4624', '87', '21', '5', '0', '125', '5', '1', '-625', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10398', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10400', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11880', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15201', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11881', '609', '0', '5', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11803', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11804', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15200', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14479', '609', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15542', '609', '0', '5', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15541', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11883', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15213', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15308', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11882', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15202', '609', '0', '5', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15211', '609', '0', '6', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15209', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15307', '609', '0', '6', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15212', '609', '0', '6', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15206', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15207', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15208', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15220', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15305', '609', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15204', '609', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15205', '609', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10399', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10470', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10477', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10476', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11257', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11582', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10469', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10471', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10438', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14861', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1853', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11261', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10821', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10505', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1847', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10825', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10826', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16184', '529', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10809', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10808', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10558', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10393', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16102', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16101', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14516', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12263', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12262', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11622', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11551', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11284', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11143', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11142', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11121', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11082', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11058', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10901', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10516', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10508', '529', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10507', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10506', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10504', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10503', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10502', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10500', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10499', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10498', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10495', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10491', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10489', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10488', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10487', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10486', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10478', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10464', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10463', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10440', '529', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10439', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10437', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10436', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10435', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10433', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10432', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10417', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10416', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10414', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10413', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10412', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10409', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10408', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10407', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10406', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10405', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10394', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10385', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10384', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10382', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10381', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1852', '529', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1805', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1788', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8548', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8550', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8553', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10827', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8547', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8551', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8546', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17878', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14564', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11873', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11598', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11263', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11197', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11078', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11077', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11076', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11075', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11030', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10952', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10951', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10947', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10943', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10940', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10936', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10836', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10816', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10801', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10698', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10580', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10485', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10482', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10481', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10480', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10479', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10411', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10391', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10390', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10389', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10388', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10387', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10383', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8558', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8557', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8556', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8555', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8545', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8544', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8543', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8542', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8541', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8540', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8539', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8538', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8535', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8534', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8532', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8531', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8530', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8529', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8528', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8527', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8526', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8525', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8524', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8523', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4475', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4474', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4472', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1804', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2545', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11673', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7883', '369', '0', '5', '1', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1802', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14882', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15369', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3467', '470', '0', '6', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1796', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11382', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1562', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1561', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1563', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1564', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15370', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7847', '369', '0', '5', '1', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13140', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13319', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13320', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13154', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13152', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13318', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13153', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11672', '749', '0', '6', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1795', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1794', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1793', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1791', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11747', '749', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11746', '749', '0', '4', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13443', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12122', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11744', '749', '0', '4', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11668', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11666', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11667', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4723', '21', '0', '5', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14282', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13359', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12053', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12051', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13284', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13440', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4651', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4653', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4652', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4646', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4661', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4647', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4648', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4649', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15341', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11988', '749', '0', '7', '0', '750', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1789', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1787', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15082', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9559', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11350', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14750', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11352', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11353', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11356', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11351', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14834', '270', '0', '7', '0', '400', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11340', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11830', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11339', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11338', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11831', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14509', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14507', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14515', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14517', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14510', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11374', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1785', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11380', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5134', '729', '0', '6', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13798', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15348', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12076', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12100', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12101', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13298', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13145', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13147', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13299', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13146', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13137', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13138', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13297', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13143', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13144', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1784', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9017', '749', '0', '5', '0', '75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12118', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15111', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1783', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4662', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4644', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4645', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4639', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4643', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4638', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4642', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4641', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4640', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10199', '576', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15340', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11659', '749', '0', '5', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11658', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13797', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14342', '576', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14988', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15339', '910', '609', '7', '0', '100', '7', '0', '300', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9464', '576', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9816', '749', '0', '5', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15343', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15387', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11502', '749', '0', '7', '0', '1000', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11372', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11370', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11373', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14821', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11371', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14880', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14532', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11387', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13326', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13328', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13324', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12264', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15461', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9462', '576', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10738', '576', '0', '7', '0', '40', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14372', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10916', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7442', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7441', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7440', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15333', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11359', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7857', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7856', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7855', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7858', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15462', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14284', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13358', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12050', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12127', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14283', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12096', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13577', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13617', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12098', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15344', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7439', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7438', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7157', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7156', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('675', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1096', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('921', '21', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1097', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4260', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('674', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('677', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15168', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7155', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11391', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2625', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14883', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5623', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5618', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5615', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5617', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5616', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13179', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13437', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13180', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13181', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13438', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13439', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7154', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7794', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2699', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2663', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2594', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11388', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2664', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14825', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7153', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15043', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15068', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11365', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11361', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17671', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16700', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17465', '946', '947', '7', '0', '24', '7', '0', '24', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16807', '946', '947', '7', '0', '150', '7', '0', '150', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16809', '946', '947', '7', '0', '150', '7', '0', '150', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16808', '946', '947', '7', '0', '150', '7', '0', '150', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17380', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17377', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17381', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17371', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17414', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17395', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16699', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17378', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17259', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17264', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17271', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17281', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17455', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17269', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17309', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17517', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17306', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17308', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17536', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17537', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17307', '946', '947', '4', '0', '25', '4', '0', '25', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16704', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17283', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16540', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16545', '967', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6707', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18088', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17288', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17261', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15275', '910', '0', '3', '0', '210', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9536', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14478', '749', '0', '5', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11982', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12056', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9179', '87', '21', '6', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1411', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18500', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16596', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17267', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1094', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17248', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1095', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16544', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16425', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16424', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16415', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15276', '910', '0', '3', '0', '210', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16492', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16171', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16595', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16504', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16176', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17229', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16406', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16179', '967', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16175', '967', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16459', '967', '0', '4', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16408', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16470', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16409', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16173', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16457', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17023', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16468', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16461', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17067', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17007', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16177', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16389', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16174', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16414', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16473', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16471', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16178', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16152', '967', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16151', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16460', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16491', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16170', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16412', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16411', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16410', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16181', '967', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16180', '967', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16472', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16407', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16525', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16488', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16481', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16489', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16485', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16482', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15691', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15548', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15690', '967', '0', '7', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15687', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15688', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15689', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15551', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16526', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1653', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15547', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('1565', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15550', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16529', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15277', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15264', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16539', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15262', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16530', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15249', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16524', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15240', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15229', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15235', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15230', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15236', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15088', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12057', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14889', '946', '947', '5', '0', '5', '5', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13085', '70', '349', '3', '0', '25', '3', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12259', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17624', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17695', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17694', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17653', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17491', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17397', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16593', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17622', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17270', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17626', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17429', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18894', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18419', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18037', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18064', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17138', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18440', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18402', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18065', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17167', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18663', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17225', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18260', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18404', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18313', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18204', '0', '941', '0', '0', '0', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18399', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18207', '978', '941', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18203', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18202', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18238', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18211', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19203', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18086', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18373', '1011', '0', '4', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18314', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17146', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18658', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18397', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17148', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17147', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18315', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18394', '933', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18087', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20857', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18429', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17136', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17135', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17137', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18352', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17134', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18309', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18127', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17938', '942', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19735', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18170', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18311', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18137', '970', '0', '6', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18136', '970', '0', '6', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18155', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18168', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20859', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19710', '935', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20478', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18089', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18371', '1011', '0', '4', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18934', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18312', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19519', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18171', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20481', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17833', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19402', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18172', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17096', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19422', '946', '947', '3', '0', '5', '3', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17478', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19428', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20923', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17356', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17357', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17083', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22890', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17400', '946', '947', '5', '0', '1', '5', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17401', '946', '947', '5', '0', '1', '5', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17540', '946', '947', '5', '0', '10', '5', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22398', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19016', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17477', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17370', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18700', '1011', '0', '4', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17398', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17669', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17399', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16594', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19415', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17427', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16878', '946', '947', '3', '0', '5', '3', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17461', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16870', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17464', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19300', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16867', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19414', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17420', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17670', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19413', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19486', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16523', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16507', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17280', '946', '947', '4', '0', '3', '4', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19411', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17462', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18340', '942', '0', '3', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18122', '942', '0', '3', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18123', '942', '0', '3', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19946', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19947', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20088', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20089', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10060', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10267', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17289', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17290', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17292', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17294', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17295', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17296', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17297', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17301', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17416', '946', '947', '5', '0', '5', '5', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17521', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17533', '967', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17534', '967', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17535', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17543', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17546', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17547', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17548', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17721', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17722', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17728', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17729', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17730', '0', '941', '0', '0', '0', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17734', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17770', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17771', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17796', '942', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17797', '942', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17798', '942', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17799', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17800', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17801', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17802', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17803', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17805', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17819', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17820', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17826', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17835', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17836', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17839', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17840', '989', '0', '7', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17848', '989', '0', '7', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17860', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17862', '989', '0', '7', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17871', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17879', '989', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17880', '989', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17881', '989', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17882', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17892', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17917', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17941', '942', '0', '4', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17942', '942', '0', '4', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17951', '942', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17952', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17954', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17955', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17957', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17960', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17961', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17975', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17976', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17977', '935', '0', '4', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17978', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17980', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17991', '942', '0', '4', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17993', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17994', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18092', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18093', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18094', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18096', '989', '0', '7', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18105', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18317', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18318', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18321', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18322', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18323', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18325', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18326', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18328', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18331', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18341', '933', '0', '6', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18343', '933', '0', '6', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18344', '933', '0', '6', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18405', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18420', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18421', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18422', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18430', '933', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18431', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18472', '1011', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18473', '1011', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18478', '1011', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18493', '1011', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18495', '1011', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18497', '1011', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18498', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18501', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18503', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18506', '1011', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18521', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18524', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18556', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18557', '1011', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18558', '1011', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18559', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18587', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18631', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18632', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18633', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18634', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18635', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18636', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18637', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18638', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18639', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18640', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18641', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18642', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18667', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18701', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18708', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18731', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18732', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18764', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18765', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18794', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18796', '1011', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18797', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18830', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18848', '1011', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18982', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18983', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18994', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18995', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19166', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19167', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19168', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19204', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19205', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19206', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19208', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19209', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19218', '935', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19219', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19220', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19221', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19226', '1011', '0', '4', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19231', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19301', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19302', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19303', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19304', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19306', '933', '0', '4', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19307', '933', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19505', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19507', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19508', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19509', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19510', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19511', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19512', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19513', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19557', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19598', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19608', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19632', '942', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19633', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19666', '933', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19671', '933', '0', '6', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19713', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19716', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19781', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19782', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19783', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19843', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19865', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19872', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19873', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19874', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19875', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19876', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19919', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19920', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19949', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19953', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19958', '935', '0', '4', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19962', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19964', '947', '0', '7', '0', '4', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19969', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20059', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20075', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20078', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20083', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20864', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20865', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20866', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20867', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20868', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20869', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20870', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20873', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20875', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20879', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20880', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20881', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20882', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20883', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20885', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20886', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20896', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20897', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20898', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20900', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20901', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20902', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20904', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20905', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20906', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20908', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20909', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20910', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20911', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20912', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20988', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20990', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21062', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21104', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21127', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21128', '942', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21136', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21137', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21138', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21139', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21140', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21148', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21303', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21304', '935', '0', '4', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21338', '942', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21346', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21395', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21466', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21467', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21694', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21695', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21696', '942', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21697', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21698', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21702', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21818', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21891', '1011', '0', '7', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21904', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22128', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22891', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22892', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2482', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2487', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2488', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2490', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2491', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2493', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2494', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2495', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2498', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2499', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2500', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2501', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2502', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2542', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2546', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2547', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2548', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2549', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2550', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2551', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2610', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2622', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2627', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2636', '87', '21', '5', '0', '25', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2670', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2685', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2767', '87', '21', '5', '0', '5', '7', '1', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2768', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2769', '87', '21', '5', '0', '5', '7', '1', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2774', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2778', '87', '21', '5', '0', '25', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2817', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2832', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2834', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2836', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2837', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2838', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2839', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2840', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2842', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2843', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2844', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2845', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2846', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2847', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2848', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2849', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3537', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3538', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3945', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4505', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4506', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('4631', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5601', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6068', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6766', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6768', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6771', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6777', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6779', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7032', '749', '0', '4', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7323', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7324', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7325', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('737', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7406', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('773', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7805', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7853', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8123', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8305', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8309', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8320', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9699', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21985', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21912', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21911', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21728', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21650', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21652', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21649', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21644', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21787', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21651', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21763', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21804', '1031', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23029', '1031', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23165', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23162', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21838', '1031', '0', '7', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6651', '576', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11557', '576', '0', '7', '0', '-75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11555', '576', '0', '7', '0', '-75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11558', '576', '0', '7', '0', '-75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11552', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11516', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11553', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6184', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6188', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6189', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6185', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17808', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17968', '990', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17842', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17888', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17767', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17899', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17907', '990', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17898', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17895', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17905', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17897', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17906', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17908', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17916', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14514', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14511', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10497', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14513', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14512', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16120', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14521', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14520', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14519', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14518', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14684', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11286', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11439', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14695', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('7158', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11665', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11661', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12143', '749', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11669', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12119', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11662', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11664', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11663', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11671', '749', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12099', '749', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11745', '749', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11360', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11355', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11368', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15083', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15146', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15084', '270', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11347', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11348', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8324', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11357', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11346', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11389', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11390', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11383', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15114', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26727', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16158', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27947', '1037', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26801', '1037', '0', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26802', '0', '1052', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26794', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26805', '0', '1052', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26800', '0', '1052', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16449', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16368', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16446', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26792', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26731', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16062', '529', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26737', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16452', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16451', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28231', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26930', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26799', '1037', '0', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27949', '1052', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26723', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26735', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32665', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26722', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26798', '1037', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26796', '0', '1052', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17964', '942', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17959', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17723', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17732', '942', '0', '6', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17724', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20465', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17725', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26734', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('8606', '529', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10678', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12250', '529', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23051', '1031', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23066', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23067', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23068', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23163', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17962', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17958', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17816', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21126', '942', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17817', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17940', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17731', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17726', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17727', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17735', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17990', '942', '0', '6', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17815', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17814', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19712', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22841', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22878', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22883', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22881', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22844', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22845', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22847', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22846', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22887', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22898', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22948', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23161', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22871', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23418', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23419', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23420', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18282', '970', '0', '6', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('10618', '589', '0', '7', '0', '-250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18124', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18125', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19734', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17890', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17893', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15623', '576', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24686', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24687', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24685', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24683', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24762', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24684', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24697', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21362', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24698', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24554', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24558', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24696', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24553', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24777', '1077', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24744', '1077', '0', '5', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24723', '1077', '0', '5', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24560', '1077', '0', '5', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24664', '1077', '0', '5', '0', '240', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24561', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24556', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24559', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24689', '1077', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24690', '1077', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24688', '1077', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24761', '1077', '0', '5', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15233', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15325', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15521', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15324', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15327', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15934', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15336', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15318', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15319', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15320', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15323', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15537', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15338', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15355', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15335', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15527', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15555', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15546', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15538', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15388', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15391', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15389', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15390', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15392', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15263', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15543', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15511', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15544', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15516', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15510', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15509', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15517', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15727', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15247', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15984', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15630', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15250', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15252', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15312', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15246', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15311', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15299', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15621', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15622', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15962', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15316', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15718', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22947', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22951', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22949', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22952', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22917', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22884', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22954', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22855', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22957', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22962', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23222', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23239', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23196', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23319', '1012', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23049', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22953', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22885', '1012', '0', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22848', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22849', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22955', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23469', '1012', '0', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23109', '1012', '0', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23147', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23047', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22874', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22873', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22875', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22877', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22876', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23030', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23028', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22963', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23330', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22960', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23232', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23018', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23389', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22869', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23337', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23339', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22853', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22959', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22964', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23226', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23400', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23403', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23402', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23397', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23394', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23375', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22997', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22996', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23237', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23223', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23235', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23236', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23399', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23216', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23421', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23524', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23318', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22880', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22945', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22882', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23172', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26728', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16448', '529', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26803', '1037', '0', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26716', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15505', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15385', '910', '609', '7', '0', '20', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23374', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22965', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23436', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22879', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22946', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22956', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('14881', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22939', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17864', '990', '0', '7', '0', '14', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17818', '990', '0', '7', '0', '14', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17902', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('17903', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2597', '349', '0', '3', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24476', '349', '0', '3', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2246', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2590', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2247', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2240', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2586', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2591', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2589', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2587', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2588', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2260', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2245', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2243', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2244', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2638', '349', '0', '3', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2242', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2241', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2261', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2319', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20593', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20576', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20590', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20589', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20594', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20568', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20597', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20596', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20567', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20587', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20579', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20581', '946', '947', '7', '0', '24', '7', '0', '24', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20595', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20586', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20583', '946', '947', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20574', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20588', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20577', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20584', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20582', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20580', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20578', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18608', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18601', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18615', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18606', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18620', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18619', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18609', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18617', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21646', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18618', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18621', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18612', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18614', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21645', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18607', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18611', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18603', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18610', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18053', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18054', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18049', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18048', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18052', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18059', '946', '947', '7', '0', '7', '7', '0', '7', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18436', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18435', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18433', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18058', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18057', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18050', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18055', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18432', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18051', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19888', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21915', '942', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20626', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20623', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21914', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20620', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20622', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20621', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20625', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20627', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20629', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20632', '942', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20628', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20624', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20630', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20633', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21917', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21916', '942', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21546', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21547', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21548', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21551', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21558', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21571', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21559', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21582', '935', '0', '4', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21578', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21545', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21544', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21549', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21577', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21570', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21555', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21572', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21574', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21552', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21563', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21581', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21564', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21565', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21561', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21576', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21573', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21575', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21562', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21560', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21554', '935', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21533', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21540', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21531', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21539', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21542', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21541', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21522', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21523', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21543', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21524', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21532', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21527', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21537', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21525', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21526', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21536', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21538', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21599', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21626', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21624', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21590', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21587', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21585', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21607', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21608', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21621', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21598', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21604', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21605', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21614', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21591', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21619', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21615', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21613', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21596', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22346', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21597', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21610', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21611', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21595', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21586', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20527', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20526', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20528', '989', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20530', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20529', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20523', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20524', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20547', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20545', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20546', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20532', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20533', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20534', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22129', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20525', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23177', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23178', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23179', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23180', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20744', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22170', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22171', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22172', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20740', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22164', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20743', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22168', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22167', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20742', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22166', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20741', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22165', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21712', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20738', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20745', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20737', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20637', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20657', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20636', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20653', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20640', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20642', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20638', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20648', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20641', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20639', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20646', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20650', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20647', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20649', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20643', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20651', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20645', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20652', '1011', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20662', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20644', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20656', '1011', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20661', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20660', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20259', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20255', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20258', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20257', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20264', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20256', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20265', '933', '0', '7', '0', '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20254', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20263', '933', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20268', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20266', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20267', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22930', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20261', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20260', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20252', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20302', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20299', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20300', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20301', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20311', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20313', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20321', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20318', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20298', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20315', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20317', '1011', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20306', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20312', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20310', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20309', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20320', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20322', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20323', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20695', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20701', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21990', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20696', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20694', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20699', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20692', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20690', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20706', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23035', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23122', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19429', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20686', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21989', '1011', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21931', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21988', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20688', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18327', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20691', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18319', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20697', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('18320', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20698', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('16383', '529', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19884', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19885', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19886', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19887', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19889', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19890', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19891', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19892', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19893', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19894', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19895', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('19903', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20164', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20168', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20169', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20173', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20179', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20180', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20181', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20183', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20184', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20185', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20187', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20188', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20190', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20191', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20192', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20193', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20521', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20531', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('20535', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21843', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('21943', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22938', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23181', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23182', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23183', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23184', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23185', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('23186', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24857', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25568', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25565', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25569', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25572', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25570', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25577', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25575', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25576', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25547', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25551', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25562', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25573', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25545', '1077', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25571', '1077', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('25560', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('6187', '576', '0', '5', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11948', '729', '0', '7', '0', '350', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11949', '729', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13419', '729', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('2599', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30529', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30510', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30540', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30532', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30398', '0', '1052', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30397', '1037', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30528', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30520', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30524', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30496', '0', '1052', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30498', '0', '1052', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30509', '0', '1052', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30516', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30457', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30517', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30459', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30519', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30526', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30525', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30513', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26763', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30495', '1037', '0', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30497', '1037', '0', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30508', '1037', '0', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30460', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30478', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30473', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30485', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31610', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31611', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31612', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31585', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31586', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31587', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31591', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31588', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31590', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31589', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29051', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31595', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31594', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31593', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31598', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31597', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31603', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31600', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31601', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31602', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31613', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31614', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32593', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31599', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31605', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31606', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31607', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31608', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31609', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31604', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31592', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31615', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31616', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31617', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27731', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27737', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27734', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28200', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28249', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27729', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27742', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27744', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27743', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27732', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28199', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28201', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27736', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26529', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26530', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26532', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26533', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31201', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31208', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31187', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31184', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31179', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31178', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31202', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31203', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31206', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31180', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31188', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31200', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31199', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31211', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31212', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31215', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31217', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32273', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28825', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28585', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28695', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28583', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28578', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28926', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29240', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28836', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28837', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28581', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28826', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28547', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28961', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28965', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28838', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28584', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28579', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28580', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28582', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28835', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28920', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28586', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28587', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28546', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28923', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30965', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30970', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30969', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30964', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30967', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31867', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30973', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30975', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30976', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30977', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30978', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30979', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30980', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30982', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30981', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30983', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30966', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30968', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30974', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30971', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30972', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31533', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31536', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31537', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31538', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31678', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31681', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31671', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31672', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31635', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31183', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31659', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31660', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30747', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31661', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31662', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31663', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31666', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31667', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31675', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31658', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31665', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31676', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31669', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30748', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31679', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31656', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31673', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30939', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30925', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30929', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30930', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30935', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30936', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30932', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30933', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30926', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30938', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30927', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30942', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30931', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30928', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30934', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30940', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30943', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31365', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29307', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31368', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30530', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31370', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31367', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31335', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31337', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31341', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31873', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31356', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32787', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31344', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31336', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31338', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31339', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31340', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31343', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31345', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31346', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31347', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31348', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31351', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31352', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31342', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31354', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31355', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31357', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31359', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31363', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31362', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31350', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31349', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31360', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31468', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31448', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31447', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31473', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31461', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31462', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31441', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31442', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31443', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31450', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31452', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31453', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31454', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31455', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31457', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31460', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31466', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31471', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31472', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31474', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31475', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31449', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31451', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31470', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31459', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31476', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31477', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31478', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31479', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31480', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31456', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31469', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31465', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31464', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30258', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('5602', '93', '92', '4', '0', '25', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30176', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30277', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30278', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30276', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30418', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30416', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30419', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30279', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30285', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30286', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30283', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30179', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30319', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30385', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30111', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31104', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30284', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30329', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30414', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29309', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29308', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29310', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29311', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31371', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31372', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31373', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31374', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31375', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31376', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31378', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31380', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31383', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31385', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31387', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31876', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31394', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31369', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31379', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31388', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31389', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31390', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31877', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31381', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31384', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31386', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27966', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27962', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27969', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27964', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27965', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27963', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27961', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27985', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27972', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27970', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27971', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27983', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27982', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27977', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27975', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27978', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26730', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26729', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30764', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30765', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30766', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30806', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30821', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30818', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30762', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30772', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30803', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30790', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30770', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30822', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30823', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30819', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30817', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30816', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30775', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30820', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30791', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30767', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30779', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30804', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30756', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30809', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30774', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30788', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30807', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30810', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30901', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30904', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30903', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30916', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30915', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30905', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30909', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30914', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30907', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30912', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30911', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30910', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30906', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30908', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30913', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30991', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30902', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30917', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31558', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31561', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31560', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31559', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31514', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31515', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31513', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31501', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31487', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31494', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31483', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31497', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31486', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31493', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31490', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31503', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31502', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31504', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31484', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31488', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31495', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31498', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31485', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31489', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31496', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31499', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31492', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32192', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32550', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32549', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32555', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32552', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32554', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32551', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32553', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32583', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31518', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31500', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31511', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31509', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31508', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31512', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31507', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31510', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31506', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26550', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26553', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26554', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26555', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26669', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26670', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26672', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26683', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26684', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26685', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26686', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26690', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26691', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26692', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26694', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26696', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26893', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28368', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26687', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26861', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26693', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26668', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27633', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27635', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27638', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27639', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27640', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27641', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27646', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27644', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27645', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27647', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27648', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27649', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27650', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27651', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27653', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('28276', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27654', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27656', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27655', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27447', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29271', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29321', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29395', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30660', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30661', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30662', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30663', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30664', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30666', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30667', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30668', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30695', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30892', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30893', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30918', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30961', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30962', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30963', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31007', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31008', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31009', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31010', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31079', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32191', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32226', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32228', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32230', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32231', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32234', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32235', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32237', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32582', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29266', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29312', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29313', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29314', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29315', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29316', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31134', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37011', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36724', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37012', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36725', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36612', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36855', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36805', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36811', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36807', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36808', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36829', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37017', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37021', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37027', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37144', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36998', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37146', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37032', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37149', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37230', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37813', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37098', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37022', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37038', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37023', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36880', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37217', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37025', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36627', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36626', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37571', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37663', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37664', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37595', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37957', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37958', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37959', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38106', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38296', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38297', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38402', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38582', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38583', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37504', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37505', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37506', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38390', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38549', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38550', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36678', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38431', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38585', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38586', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37970', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38401', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38784', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38785', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37955', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38434', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38435', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38436', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36789', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38174', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36853', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38265', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38266', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38267', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36597', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('39166', '1156', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('39167', '1156', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('39168', '1156', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37126', '1156', '0', '7', '0', '450', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38258', '1156', '0', '7', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38057', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38058', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38075', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38073', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38076', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38072', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38074', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37655', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38061', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38059', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38108', '1156', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38062', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38064', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38063', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38418', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38103', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38444', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38098', '1156', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38100', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38480', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38099', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36497', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36502', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36535', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36551', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36916', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36620', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36564', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36499', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36478', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36522', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36666', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36498', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37677', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36617', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37564', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37566', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38193', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37568', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37569', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37565', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37563', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38112', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38113', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38175', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37069', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38567', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36940', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36941', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38177', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38173', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37068', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37107', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38176', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38599', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38603', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38563', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37549', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38568', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37550', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37551', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38564', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38525', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37721', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37722', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38544', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36476', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36658', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36788', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37712', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37713', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36874', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36841', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37711', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36891', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36879', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36661', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36881', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36896', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36842', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36830', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37729', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36907', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36877', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37728', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36892', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36893', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31260', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36840', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36494', '1037', '1052', '7', '0', '250', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37627', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36938', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36609', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38025', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38026', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37612', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38249', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37626', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37635', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37656', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37636', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37637', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37638', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37730', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37639', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37640', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37731', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37641', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37642', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37643', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37644', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37613', '1037', '1052', '7', '0', '250', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38082', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37007', '1156', '0', '7', '0', '75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38031', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('29932', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30941', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30937', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('32778', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30522', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30521', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30518', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31628', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31392', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31377', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31874', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31668', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30771', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('30805', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('26081', '87', '21', '6', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('676', '21', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27570', '21', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('27830', '21', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('15685', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3502', '470', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('9460', '369', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11190', '577', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35332', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35331', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35330', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35329', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35328', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35327', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35326', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35325', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35323', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('35314', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('12136', '21', '0', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11947', '730', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('11946', '730', '0', '7', '0', '350', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('13256', '730', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('22300', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('24477', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31463', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37972', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37973', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36791', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37934', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38508', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36619', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38711', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38712', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38159', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37125', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38184', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37949', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37890', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38369', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37662', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37665', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37666', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38472', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38485', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37695', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37919', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37782', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37546', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37531', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37229', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37228', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37532', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37886', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36968', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37117', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37033', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37031', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37030', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36957', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37029', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36982', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('36960', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37034', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37035', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37232', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37501', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37502', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37132', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38125', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37127', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37134', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37133', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37609', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('38220', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('37226', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3706801', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3710701', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('31207', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3700702', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `creature_onkill_reward` VALUES ('3700703', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+
+INSERT INTO `creature_onkill_reward` VALUES 
+('2496', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('3381', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('3382', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('3383', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('3384', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4624', '87', '21', '5', '0', '125', '5', '1', '-625', '0', '0', '0', '0', '0', '0', '0'),
+('10398', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10400', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11880', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15201', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11881', '609', '0', '5', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11803', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11804', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15200', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14479', '609', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15542', '609', '0', '5', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15541', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11883', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15213', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15308', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11882', '609', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15202', '609', '0', '5', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15211', '609', '0', '6', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15209', '609', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15307', '609', '0', '6', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15212', '609', '0', '6', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15206', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15207', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15208', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15220', '609', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15305', '609', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15204', '609', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15205', '609', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10399', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10470', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10477', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10476', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11257', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11582', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10469', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10471', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10438', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14861', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1853', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11261', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10821', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10505', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1847', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10825', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10826', '529', '0', '5', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16184', '529', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10809', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10808', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10558', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10393', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16102', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16101', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14516', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12263', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12262', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11622', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11551', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11284', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11143', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11142', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11121', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11082', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11058', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10901', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10516', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10508', '529', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10507', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10506', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10504', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10503', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10502', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10500', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10499', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10498', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10495', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10491', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10489', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10488', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10487', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10486', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10478', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10464', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10463', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10440', '529', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10439', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10437', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10436', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10435', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10433', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10432', '529', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10417', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10416', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10414', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10413', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10412', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10409', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10408', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10407', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10406', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10405', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10394', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10385', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10384', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10382', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10381', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1852', '529', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1805', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1788', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8548', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8550', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8553', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10827', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8547', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8551', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8546', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17878', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14564', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11873', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11598', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11263', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11197', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11078', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11077', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11076', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11075', '529', '0', '5', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11030', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10952', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10951', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10947', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10943', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10940', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10936', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10836', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10816', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10801', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10698', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10580', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10485', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10482', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10481', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10480', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10479', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10411', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10391', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10390', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10389', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10388', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10387', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10383', '529', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8558', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8557', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8556', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8555', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8545', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8544', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8543', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8542', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8541', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8540', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8539', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8538', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8535', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8534', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8532', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8531', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8530', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8529', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8528', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8527', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8526', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8525', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8524', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8523', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4475', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4474', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4472', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1804', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2545', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('11673', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7883', '369', '0', '5', '1', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1802', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14882', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15369', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0'),
+('3467', '470', '0', '6', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1796', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11382', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1562', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('1561', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('1563', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('1564', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('15370', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0'),
+('7847', '369', '0', '5', '1', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13140', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13319', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13320', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13154', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13152', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13318', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13153', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11672', '749', '0', '6', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1795', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1794', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1793', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1791', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11747', '749', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11746', '749', '0', '4', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13443', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12122', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11744', '749', '0', '4', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11668', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11666', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11667', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4723', '21', '0', '5', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14282', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13359', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12053', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12051', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13284', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13440', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4651', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4653', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4652', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4646', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4661', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4647', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4648', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4649', '93', '92', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('15341', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0'),
+('11988', '749', '0', '7', '0', '750', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1789', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1787', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15082', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('9559', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('11350', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14750', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11352', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11353', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11356', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11351', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14834', '270', '0', '7', '0', '400', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11340', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11830', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11339', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11338', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11831', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14509', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14507', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14515', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14517', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14510', '270', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11374', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1785', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11380', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('5134', '729', '0', '6', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13798', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15348', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0'),
+('12076', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12100', '749', '0', '5', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12101', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13298', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13145', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13147', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13299', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13146', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13137', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13138', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13297', '729', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13143', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13144', '730', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1784', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('9017', '749', '0', '5', '0', '75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12118', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15111', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1783', '529', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4662', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4644', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4645', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4639', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4643', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4638', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4642', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4641', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('4640', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('10199', '576', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15340', '910', '609', '7', '0', '50', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0'),
+('11659', '749', '0', '5', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11658', '749', '0', '5', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13797', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14342', '576', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14988', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15339', '910', '609', '7', '0', '100', '7', '0', '300', '0', '0', '0', '0', '0', '0', '0'),
+('9464', '576', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('9816', '749', '0', '5', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15343', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15387', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11502', '749', '0', '7', '0', '1000', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11372', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11370', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11373', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14821', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11371', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14880', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14532', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11387', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13326', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13328', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13324', '730', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12264', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15461', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('9462', '576', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10738', '576', '0', '7', '0', '40', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14372', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10916', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7442', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7441', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7440', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15333', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11359', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7857', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7856', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7855', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7858', '369', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15462', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14284', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13358', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12050', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12127', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14283', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12096', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13577', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13617', '729', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12098', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15344', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7439', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7438', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7157', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7156', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('675', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1096', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('921', '21', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1097', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('4260', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('674', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('677', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15168', '609', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7155', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11391', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2625', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('14883', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('5623', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('5618', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('5615', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('5617', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('5616', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13179', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13437', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13180', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13181', '730', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13438', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13439', '729', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7154', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7794', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2699', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2663', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2594', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('11388', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2664', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('14825', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7153', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15043', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15068', '270', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11365', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11361', '270', '0', '6', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17671', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('16700', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('17465', '946', '947', '7', '0', '24', '7', '0', '24', '1', '0', '0', '0', '0', '0', '0'),
+('16807', '946', '947', '7', '0', '150', '7', '0', '150', '1', '0', '0', '0', '0', '0', '0'),
+('16809', '946', '947', '7', '0', '150', '7', '0', '150', '1', '0', '0', '0', '0', '0', '0'),
+('16808', '946', '947', '7', '0', '150', '7', '0', '150', '1', '0', '0', '0', '0', '0', '0'),
+('17380', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17377', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17381', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17371', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17414', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17395', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('16699', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('17378', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17259', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17264', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17271', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17281', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17455', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17269', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17309', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17517', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17306', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17308', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17536', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17537', '946', '947', '4', '0', '50', '4', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17307', '946', '947', '4', '0', '25', '4', '0', '25', '1', '0', '0', '0', '0', '0', '0'),
+('16704', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('17283', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16540', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16545', '967', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('6707', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('18088', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17288', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17261', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15275', '910', '0', '3', '0', '210', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('9536', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14478', '749', '0', '5', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11982', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12056', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('9179', '87', '21', '6', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('1411', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('18500', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16596', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17267', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1094', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17248', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1095', '21', '0', '5', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16544', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16425', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16424', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16415', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15276', '910', '0', '3', '0', '210', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16492', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16171', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16595', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16504', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16176', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17229', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16406', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16179', '967', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16175', '967', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16459', '967', '0', '4', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16408', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16470', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16409', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16173', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16457', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17023', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16468', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16461', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17067', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17007', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16177', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16389', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16174', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16414', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16473', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16471', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16178', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16152', '967', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16151', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16460', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16491', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16170', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16412', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16411', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16410', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16181', '967', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16180', '967', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16472', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16407', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16525', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16488', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16481', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16489', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16485', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16482', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15691', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15548', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15690', '967', '0', '7', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15687', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15688', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15689', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15551', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16526', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1653', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('15547', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('1565', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('15550', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16529', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15277', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15264', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('16539', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15262', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('16530', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15249', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('16524', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15240', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15229', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15235', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15230', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15236', '910', '609', '3', '0', '500', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15088', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('12057', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14889', '946', '947', '5', '0', '5', '5', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('13085', '70', '349', '3', '0', '25', '3', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('12259', '749', '0', '6', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17624', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17695', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0'),
+('17694', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('17653', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17491', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17397', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('16593', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('17622', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0'),
+('17270', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17626', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17429', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('18894', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('18419', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18037', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18064', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17138', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18440', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18402', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18065', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17167', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18663', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17225', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18260', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18404', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18313', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18204', '0', '941', '0', '0', '0', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18399', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18207', '978', '941', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('18203', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18202', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18238', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18211', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('19203', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18086', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18373', '1011', '0', '4', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18314', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17146', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18658', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18397', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17148', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17147', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18315', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18394', '933', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18087', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20857', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18429', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17136', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17135', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17137', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18352', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17134', '978', '941', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('18309', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18127', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17938', '942', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19735', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18170', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18311', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18137', '970', '0', '6', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18136', '970', '0', '6', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18155', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18168', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20859', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19710', '935', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20478', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18089', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18371', '1011', '0', '4', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18934', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18312', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19519', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18171', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20481', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17833', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19402', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18172', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17096', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19422', '946', '947', '3', '0', '5', '3', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17478', '946', '947', '4', '0', '5', '4', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('19428', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20923', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('17356', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17357', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17083', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0'),
+('22890', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17400', '946', '947', '5', '0', '1', '5', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17401', '946', '947', '5', '0', '1', '5', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17540', '946', '947', '5', '0', '10', '5', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('22398', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19016', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17477', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17370', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('18700', '1011', '0', '4', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17398', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('17669', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0'),
+('17399', '946', '947', '4', '0', '1', '4', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('16594', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('19415', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0'),
+('17427', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('16878', '946', '947', '3', '0', '5', '3', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17461', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0'),
+('16870', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0'),
+('17464', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('19300', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16867', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0'),
+('19414', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0'),
+('17420', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('17670', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('19413', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0'),
+('19486', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16523', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('16507', '946', '947', '7', '0', '12', '7', '0', '12', '1', '0', '0', '0', '0', '0', '0'),
+('17280', '946', '947', '4', '0', '3', '4', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('19411', '946', '947', '3', '0', '25', '3', '0', '25', '1', '0', '0', '0', '0', '0', '0'),
+('17462', '946', '947', '7', '0', '6', '7', '0', '6', '1', '0', '0', '0', '0', '0', '0'),
+('18340', '942', '0', '3', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18122', '942', '0', '3', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18123', '942', '0', '3', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19946', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19947', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20088', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20089', '942', '0', '3', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10060', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('10267', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17289', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17290', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17292', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17294', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17295', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17296', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17297', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17301', '946', '947', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('17416', '946', '947', '5', '0', '5', '5', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('17521', '967', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17533', '967', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17534', '967', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17535', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17543', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17546', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17547', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17548', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17721', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17722', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17728', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17729', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17730', '0', '941', '0', '0', '0', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('17734', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17770', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17771', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17796', '942', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17797', '942', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17798', '942', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17799', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17800', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17801', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17802', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17803', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17805', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17819', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17820', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17826', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17835', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17836', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17839', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17840', '989', '0', '7', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17848', '989', '0', '7', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17860', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17862', '989', '0', '7', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17871', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17879', '989', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17880', '989', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17881', '989', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17882', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17892', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17917', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17941', '942', '0', '4', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17942', '942', '0', '4', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17951', '942', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17952', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17954', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17955', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17957', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17960', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17961', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17975', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17976', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17977', '935', '0', '4', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17978', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17980', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17991', '942', '0', '4', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17993', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17994', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18092', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18093', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18094', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18096', '989', '0', '7', '0', '80', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18105', '942', '0', '4', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18317', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18318', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18321', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18322', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18323', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18325', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18326', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18328', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18331', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18341', '933', '0', '6', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18343', '933', '0', '6', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18344', '933', '0', '6', '0', '70', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18405', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18420', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18421', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18422', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18430', '933', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18431', '933', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18472', '1011', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18473', '1011', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18478', '1011', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18493', '1011', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18495', '1011', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18497', '1011', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18498', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18501', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18503', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18506', '1011', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18521', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18524', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18556', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18557', '1011', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18558', '1011', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18559', '1011', '0', '4', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18587', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18631', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18632', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18633', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18634', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18635', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18636', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18637', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18638', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18639', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18640', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18641', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18642', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18667', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18701', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18708', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18731', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18732', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18764', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18765', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18794', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18796', '1011', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18797', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18830', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18848', '1011', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18982', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18983', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18994', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18995', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19166', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19167', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19168', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19204', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19205', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19206', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19208', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19209', '1011', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19218', '935', '0', '7', '0', '90', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19219', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19220', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19221', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19226', '1011', '0', '4', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19231', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19301', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19302', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19303', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19304', '1011', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19306', '933', '0', '4', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19307', '933', '0', '4', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19505', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19507', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19508', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19509', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19510', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19511', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19512', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19513', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19557', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19598', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19608', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19632', '942', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19633', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19666', '933', '0', '7', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19671', '933', '0', '6', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19713', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19716', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19781', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19782', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19783', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19843', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19865', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19872', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19873', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19874', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19875', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19876', '967', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19919', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19920', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19949', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19953', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19958', '935', '0', '4', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19962', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19964', '947', '0', '7', '0', '4', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('19969', '935', '0', '7', '0', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20059', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20075', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20078', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20083', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20864', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20865', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20866', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20867', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20868', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20869', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20870', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20873', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20875', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20879', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20880', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20881', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20882', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20883', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20885', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20886', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20896', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20897', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20898', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20900', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20901', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20902', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20904', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20905', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20906', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20908', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20909', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20910', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20911', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20912', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20988', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20990', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21062', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21104', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21127', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21128', '942', '0', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21136', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21137', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21138', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21139', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21140', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21148', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21303', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21304', '935', '0', '4', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21338', '942', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21346', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21395', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21466', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21467', '935', '0', '7', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21694', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21695', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21696', '942', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21697', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21698', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21702', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21818', '989', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21891', '1011', '0', '7', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21904', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22128', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22891', '942', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22892', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2482', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2487', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2488', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2490', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2491', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2493', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2494', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2495', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2498', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2499', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2500', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2501', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2502', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2542', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2546', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2547', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2548', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2549', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2550', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2551', '21', '87', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2610', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2622', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2627', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2636', '87', '21', '5', '0', '25', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2670', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2685', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2767', '87', '21', '5', '0', '5', '7', '1', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2768', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2769', '87', '21', '5', '0', '5', '7', '1', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2774', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2778', '87', '21', '5', '0', '25', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2817', '87', '21', '5', '0', '5', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('2832', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2834', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2836', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2837', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2838', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2839', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2840', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2842', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2843', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2844', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2845', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2846', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2847', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2848', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2849', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('3537', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('3538', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('3945', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('4505', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('4506', '21', '87', '3', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('4631', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('5601', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('6068', '92', '93', '4', '0', '100', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('6766', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('6768', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('6771', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('6777', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('6779', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('7032', '749', '0', '4', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7323', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('7324', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('7325', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('737', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('7406', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('773', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('7805', '369', '0', '3', '1', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7853', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('8123', '87', '21', '5', '0', '25', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0'),
+('8305', '169', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8309', '70', '349', '3', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('8320', '87', '21', '5', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('9699', '946', '947', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('21985', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21912', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21911', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21728', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21650', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21652', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21649', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21644', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21787', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21651', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21763', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21804', '1031', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23029', '1031', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23165', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23162', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21838', '1031', '0', '7', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('6651', '576', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11557', '576', '0', '7', '0', '-75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11555', '576', '0', '7', '0', '-75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11558', '576', '0', '7', '0', '-75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11552', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11516', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11553', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('6184', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('6188', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('6189', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('6185', '576', '0', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17808', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17968', '990', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17842', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17888', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17767', '990', '0', '7', '0', '375', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17899', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17907', '990', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17898', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17895', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17905', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17897', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17906', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17908', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17916', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14514', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14511', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10497', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14513', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14512', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16120', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14521', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14520', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14519', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14518', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14684', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11286', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11439', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14695', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('7158', '576', '0', '5', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11665', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11661', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12143', '749', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11669', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12119', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11662', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11664', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11663', '749', '0', '6', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11671', '749', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12099', '749', '0', '6', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11745', '749', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11360', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11355', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11368', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15083', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15146', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15084', '270', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11347', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11348', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('8324', '270', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11357', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11346', '270', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11389', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11390', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11383', '270', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15114', '270', '0', '7', '0', '200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('26727', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('16158', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('27947', '1037', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('26801', '1037', '0', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('26802', '0', '1052', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('26794', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26805', '0', '1052', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('26800', '0', '1052', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('16449', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16368', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16446', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('26792', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('26731', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('16062', '529', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('26737', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('16452', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16451', '529', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('28231', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26930', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26799', '1037', '0', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('27949', '1052', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('26723', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26735', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32665', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('26722', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26798', '1037', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('26796', '0', '1052', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('17964', '942', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17959', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17723', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17732', '942', '0', '6', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17724', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20465', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17725', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('26734', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('8606', '529', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10678', '529', '0', '6', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('12250', '529', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23051', '1031', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23066', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23067', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23068', '1031', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23163', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17962', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17958', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17816', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21126', '942', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17817', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17940', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17731', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17726', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17727', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17735', '942', '0', '4', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17990', '942', '0', '6', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17815', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17814', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19712', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22841', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22878', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22883', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22881', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22844', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22845', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22847', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22846', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22887', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22898', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22948', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23161', '1031', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22871', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23418', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23419', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23420', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18282', '970', '0', '6', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('10618', '589', '0', '7', '0', '-250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18124', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18125', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19734', '970', '0', '5', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17890', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17893', '942', '0', '4', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15623', '576', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24686', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24687', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24685', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24683', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24762', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24684', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24697', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21362', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24698', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24554', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24558', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24696', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24553', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24777', '1077', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24744', '1077', '0', '5', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24723', '1077', '0', '5', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24560', '1077', '0', '5', '0', '120', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24664', '1077', '0', '5', '0', '240', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24561', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24556', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24559', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24689', '1077', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24690', '1077', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24688', '1077', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24761', '1077', '0', '5', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15233', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15325', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15521', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15324', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15327', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15934', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15336', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15318', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15319', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15320', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15323', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15537', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15338', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15355', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15335', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15527', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15555', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15546', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15538', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15388', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15391', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15389', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15390', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15392', '910', '609', '7', '0', '40', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0'),
+('15263', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15543', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15511', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15544', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15516', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15510', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15509', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15517', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15727', '910', '609', '7', '0', '150', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0'),
+('15247', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15984', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15630', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15250', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15252', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15312', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15246', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15311', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15299', '910', '609', '7', '0', '30', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0'),
+('15621', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15622', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15962', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15316', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15718', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('22947', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22951', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22949', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22952', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22917', '1012', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22884', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22954', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22855', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22957', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22962', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23222', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23239', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23196', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23319', '1012', '0', '7', '0', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23049', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22953', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22885', '1012', '0', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22848', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22849', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22955', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23469', '1012', '0', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23109', '1012', '0', '7', '0', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23147', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23047', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22874', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22873', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22875', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22877', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22876', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23030', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23028', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22963', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23330', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22960', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23232', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23018', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23389', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22869', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23337', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23339', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22853', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22959', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22964', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23226', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23400', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23403', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23402', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23397', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23394', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23375', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22997', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22996', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23237', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23223', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23235', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23236', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23399', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23216', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23421', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23524', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23318', '1012', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22880', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22945', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22882', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23172', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('26728', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('16448', '529', '0', '7', '0', '60', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('26803', '1037', '0', '7', '0', '5', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('26716', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('15505', '910', '609', '7', '0', '10', '7', '0', '5', '0', '0', '0', '0', '0', '0', '0'),
+('15385', '910', '609', '7', '0', '20', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0'),
+('23374', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22965', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23436', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22879', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22946', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22956', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('14881', '1012', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22939', '1012', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17864', '990', '0', '7', '0', '14', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17818', '990', '0', '7', '0', '14', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17902', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('17903', '990', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2597', '349', '0', '3', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24476', '349', '0', '3', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2246', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2590', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2247', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2240', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2586', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2591', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2589', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2587', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2588', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2260', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2245', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2243', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2244', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2638', '349', '0', '3', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2242', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2241', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2261', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('2319', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('20593', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20576', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20590', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20589', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20594', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20568', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('20597', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('20596', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('20567', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('20587', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20579', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20581', '946', '947', '7', '0', '24', '7', '0', '24', '1', '0', '0', '0', '0', '0', '0'),
+('20595', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('20586', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20583', '946', '947', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('20574', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('20588', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20577', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20584', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20582', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('20580', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('20578', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('18608', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18601', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('18615', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18606', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18620', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18619', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18609', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18617', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('21646', '946', '947', '7', '0', '3', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('18618', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18621', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('18612', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18614', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('21645', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18607', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('18611', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18603', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18610', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18053', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18054', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18049', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18048', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18052', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18059', '946', '947', '7', '0', '7', '7', '0', '7', '1', '0', '0', '0', '0', '0', '0'),
+('18436', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('18435', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('18433', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('18058', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18057', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18050', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18055', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('18432', '946', '947', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('18051', '946', '947', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('19888', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21915', '942', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20626', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20623', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21914', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20620', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20622', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20621', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20625', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20627', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20629', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20632', '942', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20628', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20624', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20630', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20633', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21917', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21916', '942', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21546', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21547', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21548', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21551', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21558', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21571', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21559', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21582', '935', '0', '4', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21578', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21545', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21544', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21549', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21577', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21570', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21555', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21572', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21574', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21552', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21563', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21581', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21564', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21565', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21561', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21576', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21573', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21575', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21562', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21560', '935', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21554', '935', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21533', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21540', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21531', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21539', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21542', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21541', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21522', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21523', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21543', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21524', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21532', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21527', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21537', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21525', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21526', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21536', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21538', '935', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21599', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21626', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21624', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21590', '935', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21587', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21585', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21607', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21608', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21621', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21598', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21604', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21605', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21614', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21591', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21619', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21615', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21613', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21596', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22346', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21597', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21610', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21611', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21595', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21586', '935', '0', '7', '0', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20527', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20526', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20528', '989', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20530', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20529', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20523', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20524', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20547', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20545', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20546', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20532', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20533', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20534', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22129', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20525', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23177', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23178', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23179', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23180', '989', '0', '7', '0', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20744', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22170', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22171', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22172', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20740', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22164', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20743', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22168', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22167', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20742', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22166', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20741', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22165', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21712', '989', '0', '7', '0', '65', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20738', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20745', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20737', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20637', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20657', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20636', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20653', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20640', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20642', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20638', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20648', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20641', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20639', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20646', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20650', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20647', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20649', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20643', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20651', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20645', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20652', '1011', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20662', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20644', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20656', '1011', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20661', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20660', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20259', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20255', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20258', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20257', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20264', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20256', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20265', '933', '0', '7', '0', '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20254', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20263', '933', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20268', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20266', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20267', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22930', '933', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20261', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20260', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20252', '933', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20302', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20299', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20300', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20301', '1011', '0', '7', '0', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20311', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20313', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20321', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20318', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20298', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20315', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20317', '1011', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20306', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20312', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20310', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20309', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20320', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20322', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20323', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20695', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20701', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21990', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20696', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20694', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20699', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20692', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20690', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20706', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23035', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23122', '1011', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19429', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20686', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21989', '1011', '0', '7', '0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21931', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21988', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20688', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18327', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20691', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18319', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20697', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('18320', '1011', '0', '7', '0', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20698', '1011', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('16383', '529', '0', '7', '0', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19884', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19885', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19886', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19887', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19889', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19890', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19891', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19892', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19893', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19894', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19895', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('19903', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20164', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20168', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20169', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20173', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20179', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20180', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20181', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20183', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20184', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20185', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20187', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20188', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20190', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20191', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20192', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20193', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20521', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20531', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('20535', '989', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21843', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('21943', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22938', '942', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23181', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23182', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23183', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23184', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23185', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('23186', '989', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24857', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25568', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25565', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25569', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25572', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25570', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25577', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25575', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25576', '1077', '0', '7', '0', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25547', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25551', '1077', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25562', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25573', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25545', '1077', '0', '7', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25571', '1077', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('25560', '1077', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('6187', '576', '0', '5', '0', '-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11948', '729', '0', '7', '0', '350', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11949', '729', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13419', '729', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('2599', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('30529', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30510', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30540', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30532', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30398', '0', '1052', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30397', '1037', '0', '7', '0', '250', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30528', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30520', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30524', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('30496', '0', '1052', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30498', '0', '1052', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30509', '0', '1052', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30516', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30457', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30517', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30459', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('30519', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30526', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30525', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30513', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('26763', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('30495', '1037', '0', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30497', '1037', '0', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30508', '1037', '0', '7', '0', '15', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('30460', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30478', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30473', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30485', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31610', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31611', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31612', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31585', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31586', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31587', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31591', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31588', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31590', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31589', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('29051', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31595', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31594', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31593', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31598', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31597', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31603', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31600', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31601', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31602', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31613', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31614', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('32593', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31599', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31605', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31606', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31607', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31608', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31609', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31604', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31592', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31615', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31616', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31617', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('27731', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('27737', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('27734', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28200', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28249', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27729', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27742', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27744', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27743', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27732', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28199', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28201', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('27736', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('26529', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26530', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26532', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26533', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('31201', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31208', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31187', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31184', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31179', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31178', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31202', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31203', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31206', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31180', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31188', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31200', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31199', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31211', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31212', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31215', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31217', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('32273', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('28825', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('28585', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('28695', '1037', '1052', '7', '0', '1', '7', '0', '1', '1', '0', '0', '0', '0', '0', '0'),
+('28583', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28578', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28926', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('29240', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28836', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28837', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28581', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28826', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28547', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28961', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28965', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28838', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28584', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28579', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28580', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28582', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('28835', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('28920', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('28586', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('28587', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('28546', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('28923', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('30965', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30970', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30969', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30964', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30967', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31867', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30973', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30975', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30976', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30977', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30978', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30979', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30980', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30982', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30981', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30983', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30966', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30968', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30974', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('30971', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('30972', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31533', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31536', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31537', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31538', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31678', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31681', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31671', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31672', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31635', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31183', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31659', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31660', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30747', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31661', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31662', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31663', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31666', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31667', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31675', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31658', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31665', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31676', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31669', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('30748', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31679', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31656', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31673', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30939', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30925', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30929', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30930', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30935', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30936', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30932', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30933', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30926', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30938', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30927', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30942', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30931', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30928', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30934', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30940', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30943', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31365', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('29307', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31368', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30530', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31370', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31367', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31335', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31337', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31341', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31873', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31356', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('32787', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31344', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31336', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31338', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31339', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31340', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31343', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31345', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31346', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31347', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31348', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31351', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31352', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31342', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31354', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31355', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31357', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31359', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31363', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31362', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31350', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31349', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31360', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31468', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31448', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31447', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31473', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31461', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31462', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31441', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31442', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31443', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31450', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31452', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31453', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31454', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31455', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31457', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31460', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31466', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31471', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31472', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31474', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31475', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31449', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31451', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31470', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31459', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31476', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31477', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31478', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31479', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31480', '1037', '1052', '7', '0', '30', '7', '0', '30', '1', '0', '0', '0', '0', '0', '0'),
+('31456', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31469', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31465', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31464', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30258', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('5602', '93', '92', '4', '0', '25', '4', '0', '-500', '0', '0', '0', '0', '0', '0', '0'),
+('30176', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30277', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30278', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30276', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30418', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30416', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30419', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30279', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30285', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30286', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30283', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30179', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30319', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30385', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30111', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31104', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('30284', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('30329', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('30414', '1037', '1052', '7', '0', '10', '7', '0', '10', '1', '0', '0', '0', '0', '0', '0'),
+('29309', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29308', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29310', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29311', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('31371', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31372', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31373', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31374', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31375', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31376', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31378', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31380', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31383', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31385', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31387', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31876', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31394', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31369', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31379', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31388', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31389', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31390', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31877', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31381', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31384', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31386', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('27966', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27962', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27969', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27964', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27965', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27963', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27961', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27985', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27972', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27970', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27971', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27983', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27982', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27977', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('27975', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('27978', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26730', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26729', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30764', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30765', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30766', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30806', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30821', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30818', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30762', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30772', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30803', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30790', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30770', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30822', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30823', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30819', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30817', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30816', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30775', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30820', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30791', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30767', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30779', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30804', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30756', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30809', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30774', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30788', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30807', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30810', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30901', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30904', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30903', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30916', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30915', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30905', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30909', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30914', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30907', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30912', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30911', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30910', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30906', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30908', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30913', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30991', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30902', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('30917', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31558', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31561', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31560', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31559', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31514', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31515', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31513', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31501', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31487', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31494', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31483', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31497', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31486', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31493', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31490', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31503', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31502', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31504', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31484', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31488', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31495', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31498', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31485', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31489', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31496', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31499', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31492', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32192', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32550', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32549', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32555', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32552', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32554', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32551', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32553', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('32583', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31518', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31500', '1037', '1052', '7', '0', '2', '7', '0', '2', '1', '0', '0', '0', '0', '0', '0'),
+('31511', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31509', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31508', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31512', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31507', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31510', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('31506', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('26550', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26553', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26554', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26555', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26669', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26670', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26672', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26683', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26684', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26685', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26686', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26690', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26691', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26692', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26694', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26696', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26893', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28368', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26687', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26861', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26693', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('26668', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('27633', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27635', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27638', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27639', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27640', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27641', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27646', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27644', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27645', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27647', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27648', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27649', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27650', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27651', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27653', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('28276', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('27654', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('27656', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('27655', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('27447', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29271', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('29321', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('29395', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30660', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30661', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30662', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30663', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30664', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30666', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30667', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30668', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30695', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30892', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30893', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30918', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30961', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30962', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30963', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31007', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31008', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31009', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31010', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31079', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32191', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32226', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32228', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32230', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32231', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32234', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32235', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32237', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32582', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('29266', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29312', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29313', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29314', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29315', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('29316', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('31134', '1037', '1052', '7', '0', '50', '7', '0', '50', '1', '0', '0', '0', '0', '0', '0'),
+('37011', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36724', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37012', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36725', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36612', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36855', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36805', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36811', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36807', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36808', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36829', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37017', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37021', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37027', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37144', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36998', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37146', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37032', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37149', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37230', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37813', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37098', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37022', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37038', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37023', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36880', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37217', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37025', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36627', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36626', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37571', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37663', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37664', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37595', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37957', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37958', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37959', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38106', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38296', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38297', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38402', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38582', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38583', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37504', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37505', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37506', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38390', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38549', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38550', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36678', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38431', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38585', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38586', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37970', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38401', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38784', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38785', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37955', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38434', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38435', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38436', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36789', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38174', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36853', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38265', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38266', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38267', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36597', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('39166', '1156', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('39167', '1156', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('39168', '1156', '0', '7', '0', '1500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37126', '1156', '0', '7', '0', '450', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38258', '1156', '0', '7', '0', '500', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38057', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38058', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38075', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38073', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38076', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38072', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38074', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37655', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38061', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38059', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38108', '1156', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38062', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38064', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38063', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38418', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38103', '1156', '0', '7', '0', '150', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38444', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38098', '1156', '0', '7', '0', '30', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38100', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38480', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38099', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36497', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('36502', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('36535', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36551', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36916', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36620', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36564', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36499', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36478', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36522', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36666', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36498', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('37677', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('36617', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37564', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37566', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38193', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37568', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37569', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37565', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37563', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38112', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('38113', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('38175', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37069', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38567', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36940', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36941', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38177', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38173', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37068', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37107', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38176', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38599', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('38603', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('38563', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37549', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38568', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37550', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37551', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38564', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38525', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37721', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37722', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38544', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36476', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('36658', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('36788', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37712', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37713', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36874', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36841', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37711', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36891', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36879', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36661', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36881', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36896', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36842', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36830', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37729', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36907', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36877', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37728', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36892', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36893', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31260', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36840', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('36494', '1037', '1052', '7', '0', '250', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37627', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('36938', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('36609', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38025', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38026', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37612', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38249', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37626', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37635', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37656', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37636', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37637', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37638', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37730', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37639', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37640', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37731', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37641', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37642', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37643', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37644', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37613', '1037', '1052', '7', '0', '250', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38082', '1156', '0', '7', '0', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37007', '1156', '0', '7', '0', '75', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38031', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('29932', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('30941', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30937', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('32778', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('30522', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30521', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30518', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31628', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31392', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31377', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31874', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('31668', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30771', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('30805', '1037', '1052', '7', '0', '5', '7', '0', '5', '1', '0', '0', '0', '0', '0', '0'),
+('26081', '87', '21', '6', '0', '5', '7', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('676', '21', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('27570', '21', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('27830', '21', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('15685', '470', '0', '5', '0', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('3502', '470', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('9460', '369', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11190', '577', '0', '7', '0', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('35332', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('35331', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('35330', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('35329', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('35328', '0', '1052', '0', '0', '0', '7', '0', '3', '1', '0', '0', '0', '0', '0', '0'),
+('35327', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('35326', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('35325', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('35323', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('35314', '1037', '0', '7', '0', '3', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0'),
+('12136', '21', '0', '7', '127', '-125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11947', '730', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('11946', '730', '0', '7', '0', '350', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('13256', '730', '0', '7', '0', '125', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('22300', '942', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('24477', '349', '70', '5', '0', '5', '3', '0', '-25', '0', '0', '0', '0', '0', '0', '0'),
+('31463', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('37972', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37973', '1156', '0', '7', '0', '250', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36791', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37934', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38508', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36619', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38711', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38712', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38159', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37125', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38184', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37949', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37890', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38369', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37662', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37665', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37666', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38472', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38485', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37695', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37919', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37782', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37546', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37531', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37229', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37228', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37532', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37886', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36968', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37117', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37033', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37031', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37030', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36957', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37029', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36982', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('36960', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37034', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37035', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37232', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37501', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37502', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37132', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('38125', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37127', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37134', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37133', '1156', '0', '7', '0', '25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('37609', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('38220', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('37226', '1037', '1052', '7', '0', '250', '7', '0', '250', '1', '0', '0', '0', '0', '0', '0'),
+('3706801', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('3710701', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('31207', '1037', '1052', '7', '0', '15', '7', '0', '15', '1', '0', '0', '0', '0', '0', '0'),
+('3700702', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+('3700703', '1156', '0', '7', '0', '50', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+
 DROP TABLE IF EXISTS `game_event_seasonal_questrelation`;
 CREATE TABLE `game_event_seasonal_questrelation` (
   `questId` INT(10) UNSIGNED NOT NULL COMMENT 'Quest Identifier',
   `eventEntry` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Entry of the game event',
   PRIMARY KEY (`questId`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8 COMMENT='GameEvent System';
+
 LOCK TABLES `game_event_seasonal_questrelation` WRITE;
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (1657,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (1658,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (6961,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (6962,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (6963,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (6964,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (6983,3);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (6984,3);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7021,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7022,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7023,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7024,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7025,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7042,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7043,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7045,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7061,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7062,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (7063,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8149,11);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8150,11);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8311,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8312,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8322,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8353,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8354,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8355,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8356,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8357,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8358,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8359,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8360,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8373,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8409,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8744,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8746,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8762,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8763,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8767,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8768,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8769,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8788,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8799,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8803,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8827,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8828,2);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8860,6);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8861,6);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8868,7);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8897,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8898,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8899,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8900,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8901,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8902,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8903,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8904,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8971,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8972,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8973,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8974,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8975,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8976,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8979,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8980,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8981,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8982,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8983,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8984,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (8993,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (9024,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (9025,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (9026,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (9027,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (9028,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11131,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11135,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11219,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11220,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11242,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11356,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11357,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11360,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11361,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11392,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11401,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11403,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11404,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11405,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11435,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11439,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11440,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11449,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11450,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11528,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11558,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11580,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11581,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11583,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11584,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11696,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11732,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11734,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11735,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11736,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11737,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11738,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11739,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11740,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11741,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11742,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11743,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11744,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11745,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11746,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11747,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11748,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11749,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11750,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11751,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11752,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11753,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11754,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11755,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11756,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11757,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11758,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11759,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11760,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11761,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11762,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11763,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11764,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11765,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11766,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11767,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11768,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11769,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11770,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11771,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11772,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11773,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11774,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11775,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11776,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11777,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11778,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11779,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11780,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11781,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11782,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11783,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11784,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11785,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11786,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11787,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11799,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11800,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11801,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11802,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11803,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11804,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11805,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11806,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11807,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11808,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11809,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11810,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11811,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11812,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11813,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11814,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11815,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11816,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11817,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11818,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11819,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11820,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11821,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11822,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11823,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11824,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11825,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11826,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11827,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11828,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11829,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11830,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11831,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11832,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11833,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11834,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11835,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11836,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11837,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11838,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11839,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11840,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11841,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11842,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11843,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11844,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11845,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11846,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11847,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11848,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11849,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11850,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11851,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11852,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11853,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11854,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11855,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11856,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11857,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11858,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11859,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11860,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11861,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11862,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11863,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11937,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (11976,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12133,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12135,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12139,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12155,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12286,8);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12313,24);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12331,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12332,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12333,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12334,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12335,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12336,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12337,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12338,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12339,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12340,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12341,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12342,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12343,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12344,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12345,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12346,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12347,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12348,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12349,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12350,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12351,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12352,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12353,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12354,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12355,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12356,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12357,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12358,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12359,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12360,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12361,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12362,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12363,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12364,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12365,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12366,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12367,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12368,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12369,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12370,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12371,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12373,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12374,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12375,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12376,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12377,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12378,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12379,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12380,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12381,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12382,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12383,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12384,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12385,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12386,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12387,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12388,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12389,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12390,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12391,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12392,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12393,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12394,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12395,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12396,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12397,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12398,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12399,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12400,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12401,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12402,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12403,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12404,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12405,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12406,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12407,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12408,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12409,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12410,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12940,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12941,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12944,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12945,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12946,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12947,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (12950,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13203,52);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13433,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13434,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13435,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13436,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13437,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13438,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13439,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13440,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13441,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13442,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13443,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13444,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13445,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13446,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13447,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13448,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13449,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13450,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13451,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13452,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13453,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13454,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13455,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13456,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13457,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13458,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13459,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13460,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13461,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13462,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13463,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13464,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13465,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13466,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13467,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13468,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13469,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13470,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13471,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13472,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13473,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13474,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13485,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13486,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13487,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13488,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13489,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13490,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13491,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13492,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13493,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13494,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13495,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13496,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13497,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13498,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13499,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13500,1);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13501,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13548,12);
-INSERT  INTO `game_event_seasonal_questrelation` VALUES (13966,52);
+INSERT  INTO `game_event_seasonal_questrelation` VALUES 
+(1657,12),
+(1658,12),
+(6961,2),
+(6962,2),
+(6963,2),
+(6964,2),
+(6983,3),
+(6984,3),
+(7021,2),
+(7022,2),
+(7023,2),
+(7024,2),
+(7025,2),
+(7042,2),
+(7043,2),
+(7045,2),
+(7061,2),
+(7062,2),
+(7063,2),
+(8149,11),
+(8150,11),
+(8311,12),
+(8312,12),
+(8322,12),
+(8353,12),
+(8354,12),
+(8355,12),
+(8356,12),
+(8357,12),
+(8358,12),
+(8359,12),
+(8360,12),
+(8373,12),
+(8409,12),
+(8744,52),
+(8746,2),
+(8762,2),
+(8763,2),
+(8767,52),
+(8768,52),
+(8769,52),
+(8788,52),
+(8799,2),
+(8803,52),
+(8827,2),
+(8828,2),
+(8860,6),
+(8861,6),
+(8868,7),
+(8897,8),
+(8898,8),
+(8899,8),
+(8900,8),
+(8901,8),
+(8902,8),
+(8903,8),
+(8904,8),
+(8971,8),
+(8972,8),
+(8973,8),
+(8974,8),
+(8975,8),
+(8976,8),
+(8979,8),
+(8980,8),
+(8981,8),
+(8982,8),
+(8983,8),
+(8984,8),
+(8993,8),
+(9024,8),
+(9025,8),
+(9026,8),
+(9027,8),
+(9028,8),
+(11131,12),
+(11135,12),
+(11219,12),
+(11220,12),
+(11242,12),
+(11356,12),
+(11357,12),
+(11360,12),
+(11361,12),
+(11392,12),
+(11401,12),
+(11403,12),
+(11404,12),
+(11405,12),
+(11435,12),
+(11439,12),
+(11440,12),
+(11449,12),
+(11450,12),
+(11528,52),
+(11558,8),
+(11580,1),
+(11581,1),
+(11583,1),
+(11584,1),
+(11696,1),
+(11732,1),
+(11734,1),
+(11735,1),
+(11736,1),
+(11737,1),
+(11738,1),
+(11739,1),
+(11740,1),
+(11741,1),
+(11742,1),
+(11743,1),
+(11744,1),
+(11745,1),
+(11746,1),
+(11747,1),
+(11748,1),
+(11749,1),
+(11750,1),
+(11751,1),
+(11752,1),
+(11753,1),
+(11754,1),
+(11755,1),
+(11756,1),
+(11757,1),
+(11758,1),
+(11759,1),
+(11760,1),
+(11761,1),
+(11762,1),
+(11763,1),
+(11764,1),
+(11765,1),
+(11766,1),
+(11767,1),
+(11768,1),
+(11769,1),
+(11770,1),
+(11771,1),
+(11772,1),
+(11773,1),
+(11774,1),
+(11775,1),
+(11776,1),
+(11777,1),
+(11778,1),
+(11779,1),
+(11780,1),
+(11781,1),
+(11782,1),
+(11783,1),
+(11784,1),
+(11785,1),
+(11786,1),
+(11787,1),
+(11799,1),
+(11800,1),
+(11801,1),
+(11802,1),
+(11803,1),
+(11804,1),
+(11805,1),
+(11806,1),
+(11807,1),
+(11808,1),
+(11809,1),
+(11810,1),
+(11811,1),
+(11812,1),
+(11813,1),
+(11814,1),
+(11815,1),
+(11816,1),
+(11817,1),
+(11818,1),
+(11819,1),
+(11820,1),
+(11821,1),
+(11822,1),
+(11823,1),
+(11824,1),
+(11825,1),
+(11826,1),
+(11827,1),
+(11828,1),
+(11829,1),
+(11830,1),
+(11831,1),
+(11832,1),
+(11833,1),
+(11834,1),
+(11835,1),
+(11836,1),
+(11837,1),
+(11838,1),
+(11839,1),
+(11840,1),
+(11841,1),
+(11842,1),
+(11843,1),
+(11844,1),
+(11845,1),
+(11846,1),
+(11847,1),
+(11848,1),
+(11849,1),
+(11850,1),
+(11851,1),
+(11852,1),
+(11853,1),
+(11854,1),
+(11855,1),
+(11856,1),
+(11857,1),
+(11858,1),
+(11859,1),
+(11860,1),
+(11861,1),
+(11862,1),
+(11863,1),
+(11937,1),
+(11976,1),
+(12133,12),
+(12135,12),
+(12139,12),
+(12155,12),
+(12286,8),
+(12313,24),
+(12331,12),
+(12332,12),
+(12333,12),
+(12334,12),
+(12335,12),
+(12336,12),
+(12337,12),
+(12338,12),
+(12339,12),
+(12340,12),
+(12341,12),
+(12342,12),
+(12343,12),
+(12344,12),
+(12345,12),
+(12346,12),
+(12347,12),
+(12348,12),
+(12349,12),
+(12350,12),
+(12351,12),
+(12352,12),
+(12353,12),
+(12354,12),
+(12355,12),
+(12356,12),
+(12357,12),
+(12358,12),
+(12359,12),
+(12360,12),
+(12361,12),
+(12362,12),
+(12363,12),
+(12364,12),
+(12365,12),
+(12366,12),
+(12367,12),
+(12368,12),
+(12369,12),
+(12370,12),
+(12371,12),
+(12373,12),
+(12374,12),
+(12375,12),
+(12376,12),
+(12377,12),
+(12378,12),
+(12379,12),
+(12380,12),
+(12381,12),
+(12382,12),
+(12383,12),
+(12384,12),
+(12385,12),
+(12386,12),
+(12387,12),
+(12388,12),
+(12389,12),
+(12390,12),
+(12391,12),
+(12392,12),
+(12393,12),
+(12394,12),
+(12395,12),
+(12396,12),
+(12397,12),
+(12398,12),
+(12399,12),
+(12400,12),
+(12401,12),
+(12402,12),
+(12403,12),
+(12404,12),
+(12405,12),
+(12406,12),
+(12407,12),
+(12408,12),
+(12409,12),
+(12410,12),
+(12940,12),
+(12941,12),
+(12944,12),
+(12945,12),
+(12946,12),
+(12947,12),
+(12950,12),
+(13203,52),
+(13433,12),
+(13434,12),
+(13435,12),
+(13436,12),
+(13437,12),
+(13438,12),
+(13439,12),
+(13440,12),
+(13441,12),
+(13442,12),
+(13443,12),
+(13444,12),
+(13445,12),
+(13446,12),
+(13447,12),
+(13448,12),
+(13449,12),
+(13450,12),
+(13451,12),
+(13452,12),
+(13453,12),
+(13454,12),
+(13455,12),
+(13456,12),
+(13457,12),
+(13458,12),
+(13459,12),
+(13460,12),
+(13461,12),
+(13462,12),
+(13463,12),
+(13464,12),
+(13465,12),
+(13466,12),
+(13467,12),
+(13468,12),
+(13469,12),
+(13470,12),
+(13471,12),
+(13472,12),
+(13473,12),
+(13474,12),
+(13485,1),
+(13486,1),
+(13487,1),
+(13488,1),
+(13489,1),
+(13490,1),
+(13491,1),
+(13492,1),
+(13493,1),
+(13494,1),
+(13495,1),
+(13496,1),
+(13497,1),
+(13498,1),
+(13499,1),
+(13500,1),
+(13501,12),
+(13548,12),
+(13966,52);
 UNLOCK TABLES;
