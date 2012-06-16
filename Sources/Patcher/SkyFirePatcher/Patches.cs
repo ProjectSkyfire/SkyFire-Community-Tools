@@ -29,6 +29,23 @@ namespace SkyFirePatcher
         }
     }
 
+    // WoW 4.3.4 15595
+    class Patch434Win : PatchInfo
+    {
+        protected override void Init()
+        {
+            ExeLength = 10474064;
+
+            Patches.Add(new PatchBytes(0x889CA,
+                                       new byte[] { 0x8B, 0x55, 0x0C, 0x83, 0xFA, 0x02, 0x75 },
+                                       new byte[] { 0xBA, 0x00, 0x00, 0x00, 0x00, 0x90, 0xEB }));
+
+            Patches.Add(new PatchBytes(0x883AE,
+                                       new byte[] { 0x74 },
+                                       new byte[] { 0xEB }));
+        }
+    }
+
     // WoW 4.3.2 15211
     class Patch432Win : PatchInfo
     {
