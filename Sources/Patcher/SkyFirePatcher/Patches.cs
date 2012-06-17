@@ -143,8 +143,8 @@ namespace SkyFirePatcher
                                        new byte[] { 0xB8, 0x00, 0x00, 0x00, 0x00 }));
 
             Patches.Add(new PatchBytes(0x348BD7,
-                                       new byte[] { 0x0F, 0x85, 0x33, 0xFE, 0xFF, 0xFF },
-                                       new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }));
+                                       new byte[] { 0x74 },
+                                       new byte[] { 0xEB }));
         }
     }
 }
