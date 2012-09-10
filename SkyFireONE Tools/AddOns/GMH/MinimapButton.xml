@@ -1,0 +1,73 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+<!-- MINIMAP BUTTON (start) -->
+<Button name="GMHelper_MinimapButton" toplevel="true" frameStrata="LOW" parent="Minimap" enableMouse="true" movable="true" hidden="false" clampedToScreen="true">
+	<Size>
+		<AbsDimension x="27" y="27"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="Minimap">
+			<Offset>
+				<AbsDimension x="-25" y="-60"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+    <NormalTexture file = "Interface\AddOns\GMH\Textures\Minimap-Button-Up"/>
+    <PushedTexture file = "Interface\AddOns\GMH\Textures\Minimap-Button-Down"/>
+	<Layers>
+		<Layer level="BACKGROUND">
+			<!--Texture name="$parent_Texture" file="Interface\AddOns\GMHelper\Textures\MMB.jpg"-->
+            <Texture name="$parent_Texture">
+            	<Size>
+					<AbsDimension x="15" y="15"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
+			</Texture>
+		</Layer>
+	<Layer level="OVERLAY">
+		<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
+			<Size>
+				<AbsDimension x="46" y="46"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+			</Anchors>
+		</Texture>
+	</Layer>
+	</Layers>
+	<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	<Scripts>
+		<OnLoad>
+			self:RegisterForClicks("LeftButtonUp","RightButtonUp","MiddleButtonUp");
+			self:RegisterForDrag("RightButton");
+		</OnLoad>
+		<OnEnter>
+		ShowGMHMinimap()
+		</OnEnter>
+		<OnLeave>
+			GameTooltip:Hide();
+		</OnLeave>
+		<OnClick>
+			ToggleAddon()
+		</OnClick>
+<OnLoad>
+self:RegisterForDrag("RightButton");
+</OnLoad>
+		<OnDragStart>
+				self:StartMoving();
+				GameTooltip:Hide();
+		</OnDragStart>
+		<OnDragStop>
+				self:StopMovingOrSizing();
+				ShowGMHMinimap();
+		</OnDragStop>
+	</Scripts>
+</Button>
+</Ui>

@@ -1,0 +1,47 @@
+## Interface: 20400
+## Title: |cFF00FF00SkyFireONE GameMaster Helper|r
+## Author: Bootz
+## credits: Stephen "Skate" Lovik | Skyler "Maven"
+## Version: 0.0.1
+## Notes: TrinityCore GM Helper converted to SkyFireONE(TBC).
+## eMail: bootz@projectskyfire.org
+## URL: https://github.com/ProjectSkyfire/SkyFire_one
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: firstannounce,secondannounce,thirdeannounce,forthannounce,fifthannounce,view,TicketChannel,TicketPassword
+GMH.lua
+TicketTracker.lua
+MinimapButton.xml
+FullForm.xml
+MiniForm.xml
+MinipForm.xml
+ViewForm.xml
+bindings.xml
+CommForm.xml
+ItemForm.xml
+ItemFormSearch.xml
+MiscForm.xml
+ObjectForm.xml
+TeleForm.xml
+ProfessionsForm.xml
+RidingForm.xml
+SkillForm.xml
+SpellForm.xml
+BanForm.xml
+NPCForm.xml
+AnnounceForm.xml
+PlayerForm.xml
+WepskForm.xml
+OverridesForm.xml
+BattlegroundForm.xml
+ModifyForm.xml
+QuickItemForm.xml
+Skill2Form.xml
+TicketShowForm.xml
+TicketView.xml
+TicketTracker.xml
+WaypointForm.xml
+
+
+
+
