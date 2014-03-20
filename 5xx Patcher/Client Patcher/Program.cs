@@ -40,6 +40,7 @@ namespace Connection_Patcher
                             patcher.Patch(Patches.Windows.x86.Email, Patterns.Windows.x86.Email);
                             patcher.Patch(Patches.Windows.x86.User, Patterns.Windows.x86.User);
                             patcher.Patch(Patches.Windows.x86.RaF, Patterns.Windows.x86.RaF);
+                            patcher.Patch(Patches.Windows.x86.Rcv, Patterns.Windows.x86.Rcv);
 
                             patcher.Binary = patcher.Binary.Replace(".exe", "") + "_Patched.exe";
 

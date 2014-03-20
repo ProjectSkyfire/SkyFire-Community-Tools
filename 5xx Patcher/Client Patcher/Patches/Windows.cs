@@ -25,6 +25,7 @@ namespace Connection_Patcher.Patches
             public static byte[] Email = { 0xEB };
             public static byte[] User  = { 0x00 };
             public static byte[] RaF   = { 0x90, 0x90, 0x90, 0x90, 0x90 };
+            public static byte[] Rcv   = { 0xFF, 0x74 };
         }
 
         public static class x64
