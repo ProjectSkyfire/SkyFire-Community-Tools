@@ -51,6 +51,7 @@ namespace Connection_Patcher
                             patcher.Patch(Patches.Windows.x64.Email, Patterns.Windows.x64.Email);
                             patcher.Patch(Patches.Windows.x64.User, Patterns.Windows.x64.User);
                             patcher.Patch(Patches.Windows.x64.RaF, Patterns.Windows.x64.RaF);
+                            patcher.Patch(Patches.Windows.x64.Rcv, Patterns.Windows.x64.Rcv);
 
                             patcher.Binary = patcher.Binary.Replace(".exe", "") + "_Patched.exe";
 
