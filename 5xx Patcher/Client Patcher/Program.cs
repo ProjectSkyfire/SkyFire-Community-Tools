@@ -62,6 +62,7 @@ namespace Connection_Patcher
                             patcher.Patch(Patches.Mac.x86.Email, Patterns.Mac.x86.Email);
                             patcher.Patch(Patches.Mac.x86.User, Patterns.Mac.x86.User);
                             patcher.Patch(Patches.Mac.x86.RaF, Patterns.Mac.x86.RaF);
+                            patcher.Patch(Patches.Mac.x86.Rcv, Patterns.Mac.x86.Rcv);
 
                             patcher.Binary = patcher.Binary + " Patched";
 
@@ -72,6 +73,7 @@ namespace Connection_Patcher
                             patcher.Patch(Patches.Mac.x64.Email, Patterns.Mac.x64.Email);
                             patcher.Patch(Patches.Mac.x64.User, Patterns.Mac.x64.User);
                             patcher.Patch(Patches.Mac.x64.RaF, Patterns.Mac.x64.RaF);
+                            patcher.Patch(Patches.Mac.x64.Rcv, Patterns.Mac.x64.Rcv);
 
                             patcher.Binary = patcher.Binary + " Patched";
                              
