@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright (C) 2012-2013 Arctium Emulation <http://arctium.org>
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -30,7 +30,7 @@ namespace Connection_Patcher.Patches
 
         public static class x64
         {
-            public static byte[] Send  = { 0x33, 0xD2, 0x90, 0x90 };
+            public static byte[] Send  = { 0x45, 0x31, 0xC0, 0x90, 0x90 };
             public static byte[] Email = { 0xEB };
             public static byte[] User  = { 0x00 };
             public static byte[] RaF   = { 0x90, 0x90, 0x90, 0x90, 0x90 };
