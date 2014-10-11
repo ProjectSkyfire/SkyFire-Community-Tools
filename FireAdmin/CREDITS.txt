@@ -1,0 +1,15 @@
+FireAdmin is derived from TrinityAdmin
+FireAdmin is developed and maintained by backburn of fireyedge.com.
+
+
+TrinityAdmin was derived from MangAdmin.
+TrinityAdmin was maintained and developed by iotech
+
+TrinityAdmin also contains code donated by:
+Pryd (teleport work), Gimp (teleport work), Shocker (various)
+
+TrinityAdmin Locale Team:
+iotech, Ravenheart, Gimp, Dracula70, MrLakeC, Namida, Amok, Lyrr123, borgotech, Morpheux, Georgios, Kitharo
+
+MangAdmin was developed by:
+Josh (Project Owner), iotech, infamousblob, Atreus420, killat200623, dragonfrost, and Necroblack

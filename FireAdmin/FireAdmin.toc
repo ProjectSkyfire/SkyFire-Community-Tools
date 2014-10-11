@@ -1,0 +1,96 @@
+## Interface: 50400
+## Title: FireAdmin
+## Author: Backburn Original by TrinityAdmin & MangAdmin Teams.
+## Version: 5.4.8
+## Notes: This add-on only intended to work with SkyFire servers and 5.4.8 clients.
+## URL: https://github.com/backburn/FireAdmin
+## Name: FireAdmin
+## License: GPLv3
+## X-Date: 11 October 2014
+## X-eMail: backburn@fieryedge.com
+## X-Website: http://www.fieryedge.com
+## OptionalDeps: AceLibrary,AceEvent-2.0,AceHook-2.1,AceDebug-2.0,AceLocale-2.2,AceConsole-2.0,AceAddon-2.0
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: MangAdminDb
+## SavedVariablesPerCharacter: MangAdminDbPerChar
+Libraries\AceLibrary\AceLibrary.lua
+Libraries\AceOO-2.0\AceOO-2.0.lua
+Libraries\AceEvent-2.0\AceEvent-2.0.lua
+Libraries\AceHook-2.1\AceHook-2.1.lua
+Libraries\AceDB-2.0\AceDB-2.0.lua
+Libraries\AceDebug-2.0\AceDebug-2.0.lua
+Libraries\AceLocale-2.2\AceLocale-2.2.lua
+Libraries\AceConsole-2.0\AceConsole-2.0.lua
+Libraries\AceAddon-2.0\AceAddon-2.0.lua
+Libraries\Tablet-2.0\Tablet-2.0.lua
+Libraries\DewDrop-2.0\DewDrop-2.0.lua
+Libraries\FrameLib-1.0\FrameLib-1.0.lua
+Libraries\FuBarPlugin-2.0\FuBarPlugin-2.0.lua
+Libraries\Graph-1.0\Graph-1.0.lua
+Locales\enUS.lua
+Locales\deDE.lua
+Locales\frFR.lua
+Locales\fiFI.lua
+Locales\plPL.lua
+Locales\svSV.lua
+Locales\itIT.lua
+Locales\liLI.lua
+Locales\roRO.lua
+Locales\csCZ.lua
+Locales\huHU.lua
+Locales\esES.lua
+Locales\zhCN.lua
+Locales\ptPT.lua
+Locales\ptBR.lua
+Locales\ruRU.lua
+Locales\nlNL.lua
+Locales\buBU.lua
+Locales\strings.lua
+models.lua
+Commands\Commands_Main.lua
+Commands\Commands_Tele.lua
+Commands\Commands_Log.lua
+Commands\Commands_Char.lua
+Commands\Commands_Char2.lua
+Commands\Commands_Ticket.lua
+Commands\Commands_Misc.lua
+Commands\Commands_Server.lua
+Commands\Commands_NPC.lua
+Commands\Commands_NPC2.lua
+Commands\Commands_GO.lua
+Commands\Commands_PvP.lua
+Commands\Commands_Event.lua
+Commands\Commands_RPG.lua
+Commands\Commands_Vendor.lua
+Commands\Commands_Ahbot.lua
+Commands\Commands_Who.lua
+dbc.lua
+TeleportTable.lua
+FunctionInit.lua
+FireAdmin.lua
+MangLinkifier.lua
+Frames\MangFrames_Start.lua
+Frames\MangFrames_Tabs.lua
+Frames\MangFrames_MiniMenu.lua
+Frames\MangFrames_LookupButtons.lua
+Frames\MangFrames_PopupFrames.lua
+Frames\MangFrames_SmallPopupFrames.lua
+Frames\MangFrames_SectionMain.lua
+Frames\MangFrames_SectionTele.lua
+Frames\MangFrames_SectionLog.lua
+Frames\MangFrames_SectionChar.lua
+Frames\MangFrames_SectionChar2.lua
+Frames\MangFrames_SectionTicket.lua
+Frames\MangFrames_SectionMisc.lua
+Frames\MangFrames_SectionServer.lua
+Frames\MangFrames_SectionNpc.lua
+Frames\MangFrames_SectionNpc2.lua
+Frames\MangFrames_SectionGO.lua
+Frames\MangFrames_SectionPvP.lua
+Frames\MangFrames_SectionEvent.lua
+Frames\MangFrames_SectionRPG.lua
+Frames\MangFrames_SectionVendor.lua
+Frames\MangFrames_SectionAhbot.lua
+Frames\MangFrames_SectionWho.lua
+MangFrames.lua
