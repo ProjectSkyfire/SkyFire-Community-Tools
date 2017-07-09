@@ -1,4 +1,4 @@
-# ![logo](http://www.projectskyfire.org/public/style_images/9_1_s2QNl.png) 
+# ![logo](http://www.projectskyfire.org/public/style_images/15_14_skyfire_logo.png)
 
 This is a collection of tools made by community members.
 If you wish to share something you have made you can request to have it added here.
