@@ -71,7 +71,7 @@ RMDIR /s /q .\vmaps
 RMDIR /s /q .\maps
 RMDIR /s /q .\mmaps
 RMDIR /s /q .\dbc
-extractor.exe
+mapextractor.exe
 ECHO.
 ECHO Dbcs and maps are finished extracting... Now extracting vmaps...
 ECHO.
