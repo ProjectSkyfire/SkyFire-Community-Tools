@@ -1,4 +1,9 @@
-# ![logo](https://camo.githubusercontent.com/f0be47cbadd2ff088baa1ee319ef5949ec94e28c/68747470733a2f2f61626c6f61642e64652f696d672f31355f31345f736b79666972655f6c6f676f71796a36382e706e67)
+# ![logo](https://abload.de/img/15_14_skyfire_logoqyj68.png)
+
+USER NOTICE !!!!!!!!!!!
+THIS REPOSITORY HAS BEEN MOVED TO CODEBERG AND WILL NO LONGER BE UPDATED.
+THE NEW REPOSITORY IS LOCATED HERE https://codeberg.org/ProjectSkyfire/Community-Tools
+[Codeberg repository](https://codeberg.org/ProjectSkyfire/Community-Tools).
 
 ## Project Information
 SkyFire is a *MMORPG* Framework based mostly on C++.
@@ -14,7 +19,7 @@ It is completely open source; community involvement is highly encouraged.
 
 If you wish to contribute ideas or code please visit our site linked below or
 make pull requests to our 
-[Github repository](https://github.com/ProjectSkyfire/SkyFire.548).
+[Codeberg repository](https://codeberg.org/ProjectSkyfire/SkyFire_548).
 
 For further information on the SkyFire project, please visit our project website at 
 [projectskyfire.org](http://www.projectskyfire.org).
@@ -33,7 +38,7 @@ Fixes are submitted as pull requests via Github.
 
 License: GPL 3.0
 
-Read file [COPYING](COPYING.md)
+Read file [LICENSE](LICENSE.md)
 
 
 ## Authors &amp; Contributors
@@ -43,10 +48,10 @@ Read file [THANKS](THANKS.md)
 
 ## Links
 
-Forum [http://www.projectskyfire.org](http://www.projectskyfire.org)
+Forum [https://www.projectskyfire.org](https://www.projectskyfire.org)
 
-Core [https://github.com/ProjectSkyfire/SkyFire_5xx](https://github.com/ProjectSkyfire/SkyFire_5xx)
+Core [https://codeberg.org/ProjectSkyfire/SkyFire_548](https://codeberg.org/ProjectSkyfire/SkyFire_548)
 
-Database [http://www.projectskyfire.org/index.php?/files/](http://www.projectskyfire.org/index.php?/files/)
+Database [https://www.projectskyfire.org/index.php?/files/](https://www.projectskyfire.org/index.php?/files/)
 
-Wiki [http://wiki.projectskyfire.org](http://wiki.projectskyfire.org)
+Wiki [https://wiki.projectskyfire.org](https://wiki.projectskyfire.org)
