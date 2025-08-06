@@ -1,10 +1,5 @@
 # ![logo](https://abload.de/img/15_14_skyfire_logoqyj68.png)
 
-USER NOTICE !!!!!!!!!!!
-THIS REPOSITORY HAS BEEN MOVED TO CODEBERG AND WILL NO LONGER BE UPDATED.
-THE NEW REPOSITORY IS LOCATED HERE https://codeberg.org/ProjectSkyfire/Community-Tools
-[Codeberg repository](https://codeberg.org/ProjectSkyfire/Community-Tools).
-
 ## Project Information
 SkyFire is a *MMORPG* Framework based mostly on C++.
 
