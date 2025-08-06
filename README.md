@@ -1,5 +1,4 @@
-# ![logo](https://abload.de/img/15_14_skyfire_logoqyj68.png)
-
+# ![logo](https://www.projectskyfire.org/uploads/monthly_2015_05/14_skyfire_logo.png.9efa54d2770daf92757f7e29109cf89e.png)
 ## Project Information
 SkyFire is a *MMORPG* Framework based mostly on C++.
 
@@ -14,7 +13,8 @@ It is completely open source; community involvement is highly encouraged.
 
 If you wish to contribute ideas or code please visit our site linked below or
 make pull requests to our 
-[Codeberg repository](https://codeberg.org/ProjectSkyfire/SkyFire_548).
+[GitHub Main repository](https://github.com/ProjectSkyfire/SkyFire_548).
+[Codeberg Mirror repository](https://codeberg.org/ProjectSkyfire/SkyFire_548).
 
 For further information on the SkyFire project, please visit our project website at 
 [projectskyfire.org](http://www.projectskyfire.org).
@@ -45,7 +45,7 @@ Read file [THANKS](THANKS.md)
 
 Forum [https://www.projectskyfire.org](https://www.projectskyfire.org)
 
-Core [https://codeberg.org/ProjectSkyfire/SkyFire_548](https://codeberg.org/ProjectSkyfire/SkyFire_548)
+Core [https://github.com/ProjectSkyfire/SkyFire_548](https://github.com/ProjectSkyfire/SkyFire_548)
 
 Database [https://www.projectskyfire.org/index.php?/files/](https://www.projectskyfire.org/index.php?/files/)
 
