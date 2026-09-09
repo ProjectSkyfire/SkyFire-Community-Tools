@@ -1,52 +1,50 @@
-# ![logo](https://www.projectskyfire.org/uploads/monthly_2015_05/14_skyfire_logo.png.9efa54d2770daf92757f7e29109cf89e.png)
-## Project Information
-SkyFire is a *MMORPG* Framework based mostly on C++.
+<p align="center">
+  <img src="Images/project-skyfire-logo.png" alt="Project SkyFire" width="360">
+</p>
 
-SkyFireEMU is a MMORPG Framework based mostly on C++. It is completely 
-open-source, and is community supported. It is derived
-from CactusEmu, TrinityCore, and MaNGOS, the Massive Network Game Object Servers, 
-and is based on the code of there projects with extensive changes over time to optimize, 
-improve and cleanup the code base at the same time as improving the in game mechanics
-and functionality.
+# SkyFire Community Tools
 
-It is completely open source; community involvement is highly encouraged.
+SkyFire Community Tools is a collection of utilities, launchers, extractors,
+and other resources created or maintained by the Project SkyFire community.
 
-If you wish to contribute ideas or code please visit our site linked below or
-make pull requests to our 
-[GitHub Main repository](https://github.com/ProjectSkyfire/SkyFire_548).
-[Codeberg Mirror repository](https://codeberg.org/ProjectSkyfire/SkyFire_548).
+Project SkyFire is an open-source MMORPG server framework written primarily in
+C++ for the World of Warcraft: Mists of Pandaria 5.4.8 client, build 18414.
 
-For further information on the SkyFire project, please visit our project website at 
-[projectskyfire.org](http://www.projectskyfire.org).
+## Project Links
 
-## Supported Client Version
-**MoP 5.4.8 Build 18414**
+- [Project website](https://www.projectskyfire.org)
+- [Community forum](https://forum.projectskyfire.org)
+- [GitHub organization](https://github.com/ProjectSkyfire)
+- [SkyFire 5.4.8 server core](https://github.com/ProjectSkyfire/SkyFire_548)
+- [SkyFire Launcher](https://github.com/ProjectSkyfire/launcher)
+- [Project wiki](https://wiki.projectskyfire.org)
 
-This is a collection of tools made by community members.
-If you wish to share something you have made you can request to have it added here.
+## Included Tools
 
-## Submitting fixes
+The repository contains community-maintained tools for SkyFire development and
+server operation. Individual tools may provide their own documentation and
+requirements.
 
-Fixes are submitted as pull requests via Github. 
+- [SkyFire Launcher](SkyFire_Launcher/README.md)
+- Client data extractors
+- Administration utilities
+- Legacy and unsupported community tools
 
-## Copyright
+## Supported Client
 
-License: GPL 3.0
+World of Warcraft: Mists of Pandaria 5.4.8, build 18414.
 
-Read file [LICENSE](LICENSE.md)
+## Contributing
 
+Fixes and improvements are submitted through pull requests to the
+[SkyFire Community Tools repository](https://github.com/ProjectSkyfire/SkyFire-Community-Tools).
+Include clear setup or usage instructions with new tools whenever possible.
 
-## Authors &amp; Contributors
+## License
 
-Read file [THANKS](THANKS.md)
+This repository is licensed under the GNU General Public License v3.0. See
+[LICENSE.md](LICENSE.md) for the complete license text.
 
+## Authors And Contributors
 
-## Links
-
-Forum [https://www.projectskyfire.org](https://www.projectskyfire.org)
-
-Core [https://github.com/ProjectSkyfire/SkyFire_548](https://github.com/ProjectSkyfire/SkyFire_548)
-
-Database [https://www.projectskyfire.org/index.php?/files/](https://www.projectskyfire.org/index.php?/files/)
-
-Wiki [https://wiki.projectskyfire.org](https://wiki.projectskyfire.org)
+See [THANKS.md](THANKS.md).
